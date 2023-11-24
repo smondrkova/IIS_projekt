@@ -1,0 +1,2 @@
+
+## Events manager web application
