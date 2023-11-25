@@ -2,32 +2,27 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>UdaloMánia</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
+<!-- resources/views/events.blade.php -->
 
-@extends('layouts.app') 
+@extends('layouts.app')  {{-- Assuming you have a layout file, adjust as needed --}}
 
 @section('content')
-    <div class="container">
-        <h1 class="my-4">Nadchádzajúce podujatia</h1>
+    <div class="container mx-auto">
+        <h1 class="my-4 text-3xl font-bold">Nadchádzajúce podujatia</h1>
 
-        <div class="row">
+        <div class="flex flex-wrap justify-center gap-10">
             @foreach ($events as $event)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        {{-- Assuming there is a 'photo' property in your Event model --}}
-                        <img src="{{ $event->photo ? asset($event->photo) : asset('placeholders/placeholder.jpg') }}" class="card-img-top" alt="{{ $event->event_name }}">
-                        
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $event->event_name }}</h5>
-                            <p class="card-text">{{ $event->date_of_event }} at {{ $event->time_of_event }}</p>
-                            <p class="card-text">Lokácia: {{ $event->place_of_event }}</p>
-                            <br>
-                            <a href="{{ route('events.show', ['id' => $event->id, 'name' => $event->event_name]) }}" class="btn btn-primary">Detail</a>
-                        </div>
+                <div class="card my-4">
+                    <img src="{{ asset('placeholders/placeholder.jpg') }}" class="w-full" alt="{{ $event->event_name }}" style="width: 450px;">
+                    
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">{{ $event->event_name }}</div>
+                        <p class="text-lg">{{ $event->date_of_event }} o {{ $event->time_of_event }}</p>
+                        <p class="text-lg">{{ $event->place->name }}</p>
+                    </div>
+
+                    <div class="px-6 pb-2">
+                        <a href="{{ route('events.show', ['id' => $event->id, 'name' => $event->event_name]) }}" class="btn btn-primary">Detail</a>
                     </div>
                 </div>
             @endforeach

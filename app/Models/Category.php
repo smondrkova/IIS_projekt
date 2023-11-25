@@ -19,4 +19,9 @@ class Category extends Model
      * @var string
      */
     protected $primaryKey = 'id';
+
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'category');
+    }
 }

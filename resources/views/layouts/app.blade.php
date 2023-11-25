@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel 10 Task List App</title>
+    <title>UdaloMánia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     {{-- blade-formatter-disable --}}
@@ -34,13 +34,11 @@
 <body class="container mx-auto mt-0 mb-10 max-w-full">
 
     <div class="top-bar bg-gray-800 text-white py-2 px-4 mb-4 h-16 flex items-center justify-between">
-        {{-- Your top bar content goes here --}}
         <span class="text-lg font-semibold">UdaloMánia</span>
 
-        {{-- Navigation links on the right --}}
         <div class="flex space-x-4 float-right text-lg">
             <a href="{{ route('events.index') }}" class="text-white">Domov</a>
-            <a href="{{ route('events.search') }}" class="text-white">Prehľadávať</a>
+            <a href="{{ route('events.search_categories') }}" class="text-white">Prehľadávať</a>
             @auth
             {{-- Show the profile button if the user is authenticated --}}
             <a href="{{ route('user.show') }}" class="text-white">Profil</a>

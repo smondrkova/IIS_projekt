@@ -17,6 +17,7 @@ class PlaceFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => $this->faker->unique()->city,
             'address' => $this->faker->unique()->address,
             'description' => $this->faker->text,
             'photo' => $this->faker->word,

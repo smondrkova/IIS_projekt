@@ -26,9 +26,22 @@ class Event extends Model
      * @var string
      */
     protected $primaryKey = 'id';
-    
-    public function toggleComplete(){
-        $this->completed = !$this->completed;
-        $this->save();
+
+    /**
+     * Define a many-to-one relationship with the Place model.
+     */
+    public function place()
+    {
+        return $this->belongsTo(Place::class, 'place_of_event');
     }
+
+    public function categories()
+    {
+        return $this->belongsTo(Category::class, 'category');
+    }
+    
+    // public function toggleComplete(){
+    //     $this->completed = !$this->completed;
+    //     $this->save();
+    // }
 }

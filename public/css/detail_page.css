@@ -1,0 +1,45 @@
+/* public/css/event_detail.css */
+
+body {
+    margin: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0px;
+    margin: auto;
+    max-width: 1000px;
+}
+
+.grid-item {
+    width: 100%; 
+}
+
+.image {
+    width: 450px;
+}
+
+.text {
+    max-width: 100%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: stretch;
+}
+
+.button-container a,
+.button-container button {
+    flex: 1;
+    margin: 0 5px; 
+}
+
+.links {
+    cursor: pointer; 
+}
+
+.links:hover {
+    color: #0056b3; 
+}

@@ -10,6 +10,7 @@ class Place extends Model
     use HasFactory;
     
     protected $fillable = [
+        'name',
         'address',
         'description',
         'photo',    
@@ -21,4 +22,12 @@ class Place extends Model
      * @var string
      */
     protected $primaryKey = 'id';
+
+    /**
+     * Define a one-to-many relationship with the Event model.
+     */
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'place_of_event');
+    }
 }
