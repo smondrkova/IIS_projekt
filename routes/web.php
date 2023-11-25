@@ -5,6 +5,8 @@ use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\EventController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,15 +19,20 @@ use Illuminate\Http\Request;
 */
 
 
-Route::get('/', function(){
-    return redirect()->route('tasks.index');
-});
+// Route::get('/', function(){
+//     return redirect()->route('tasks.index');
+// });
 
-Route::get('/tasks', function ()  {
-    return view('index', [
-        'events'=> Event::latest()->paginate(10)
-    ]);
-})->name('tasks.index');
+// Route::get('/tasks', function ()  {
+//     return view('index', [
+//         'events'=> Event::latest()->paginate(10)
+//     ]);
+// })->name('tasks.index');
+
+Route::redirect('/', '/events');
+
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
+Route::get('/events/{id}-{name}', [EventController::class, 'show'])->name('events.show');
 
 
 // Route::view('/tasks/create', 'create')->name('tasks.create');
