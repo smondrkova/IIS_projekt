@@ -16,8 +16,9 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $names = ['Education', 'Music', 'Night life', 'Culture', 'Games', 'Food', 'Health', 'Sports', 'Technology', 'Travel'];
         return [
-            'name' => $this->faker->word,
+            'name' => $this->faker->unique()->randomElement($names),
         ];
     }
 }
