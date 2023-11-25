@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('date_of_event');
             $table->time('time_of_event');
             $table->string('place_of_event');
-            $table->decimal('entry_fee', 10, 2)->nullable(); // Assuming entry fee is a decimal value.
+            $table->float('entry_fee')->nullable(); // Assuming entry fee is a decimal value.
             $table->string('category');
             $table->text('description');
             $table->string('photo')->nullable(); // Assuming the photo is a string representing the file path or URL.
