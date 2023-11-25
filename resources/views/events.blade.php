@@ -2,13 +2,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>UdaloMánia</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
+<!-- resources/views/events.blade.php -->
 
-@extends('layouts.app') 
+@extends('layouts.app')  {{-- Assuming you have a layout file, adjust as needed --}}
 
 @section('content')
     <div class="container mx-auto">
