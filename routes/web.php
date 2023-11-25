@@ -33,10 +33,12 @@ use App\Http\Controllers\UserController;
 Route::redirect('/', '/events');
 
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
-Route::get('/events/{id}-{name}', [EventController::class, 'show'])->name('events.show');
-Route::get('/search', [EventController::class, 'search'])->name('events.search');
+Route::get('/events/{id}-{name}', [EventController::class, 'event_detail'])->name('events.show');
+Route::get('/search_categories', [EventController::class, 'search_categories'])->name('events.search_categories');
 Route::get('/create_request', [EventController::class, 'create_request'])->name('events.create_request');
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('user.login');
+Route::get('/place/{id}-{name}', [EventController::class, 'place_detail'])->name('events.places');
+Route::get('/search_categories/{id}-{name}', [EventController::class, 'category_page'])->name('events.category_page');
 
 
 
