@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,10 @@ Route::redirect('/', '/events');
 
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/{id}-{name}', [EventController::class, 'show'])->name('events.show');
+Route::get('/search', [EventController::class, 'search'])->name('events.search');
+Route::get('/create_request', [EventController::class, 'create_request'])->name('events.create_request');
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('user.login');
+
 
 
 // Route::view('/tasks/create', 'create')->name('tasks.create');

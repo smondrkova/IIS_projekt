@@ -1,6 +1,14 @@
 <!-- resources/views/event_detail.blade.php -->
 
-@extends('layouts.app')  {{-- Assuming you have a layout file, adjust as needed --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UdaloMánia</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+ 
+@extends('layouts.app')  
 
 @section('content')
     <div class="container">

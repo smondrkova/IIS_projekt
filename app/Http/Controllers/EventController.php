@@ -20,4 +20,14 @@ class EventController extends Controller
 
         return view('event_detail', compact('event'));
     }
+
+    public function search()
+    {
+        return view('search');
+    }
+
+    public function create_request()
+    {
+        return view('create_request');
+    }
 }
