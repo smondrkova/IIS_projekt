@@ -38,6 +38,7 @@ Route::get('/search', [EventController::class, 'search'])->name('events.search')
 Route::get('/create_request', [EventController::class, 'create_request'])->name('events.create_request');
 Route::get('/login', [UserController::class, 'showLoginForm'])->name('user.login');
 
+Route::post('/create_request', [EventController::class, 'store'])->name('events.store');
 
 
 // Route::view('/tasks/create', 'create')->name('tasks.create');
