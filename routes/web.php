@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,13 @@ Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/{id}-{name}', [EventController::class, 'show'])->name('events.show');
 Route::get('/search', [EventController::class, 'search'])->name('events.search');
 Route::get('/create_request', [EventController::class, 'create_request'])->name('events.create_request');
-Route::get('/login', [UserController::class, 'showLoginForm'])->name('user.login');
-
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::patch('/user/{id}/edit', [UserController::class, 'update'])->name('user.update');
+Route::get('/login', [AuthController::class, 'login_form'])->name('auth.login_form');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/register', [AuthController::class, 'register_form'])->name('auth.register_form');
+Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 
 // Route::view('/tasks/create', 'create')->name('tasks.create');

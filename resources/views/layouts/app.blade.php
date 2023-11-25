@@ -41,7 +41,13 @@
         <div class="flex space-x-4 float-right text-lg">
             <a href="{{ route('events.index') }}" class="text-white">Domov</a>
             <a href="{{ route('events.search') }}" class="text-white">Prehľadávať</a>
-            <a href="{{ route('user.login') }}" class="text-white">Profil</a>
+            @auth
+            {{-- Show the profile button if the user is authenticated --}}
+            <a href="{{ route('user.show') }}" class="text-white">Profil</a>
+            @else
+            {{-- Show the login/register button if the user is not authenticated --}}
+            <a href="{{ route('auth.login_form') }}" class="text-white">Prihlásenie/Registrácia</a>
+            @endauth
             <a href="{{ route('events.create_request') }}" class="text-white">+ Vytvoriť žiadosť</a>
         </div>
     </div>
