@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('event_name');
             $table->date('date_of_event');
             $table->time('time_of_event');
-            $table->string('place_of_event');
-            $table->float('entry_fee')->nullable(); // Assuming entry fee is a decimal value.
-            $table->string('category');
+            $table->foreignId('place_of_event')->constrained('places'); // Foreign key to the 'places' table.
+            $table->float('entry_fee')->nullable();
+            $table->foreignId('category')->constrained('categories'); // Foreign key to the 'categories' table.
             $table->text('description');
             $table->string('photo')->nullable(); // Assuming the photo is a string representing the file path or URL.
             $table->timestamps();

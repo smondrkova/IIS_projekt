@@ -17,6 +17,8 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $eventIds = $this->faker->unique()->randomElements(range(1, 10), 3);
+        
         return [
             'name' => $this->faker->firstName(),
             'surname' => $this->faker->lastName(),
@@ -24,6 +26,7 @@ class UserFactory extends Factory
             'phone_number' => $this->faker->phoneNumber(),
             'password' => $this->faker->password(),
             'remember_token' => Str::random(10),
+            'signed_in_events' => json_encode($eventIds),
         ];
     }
 }
