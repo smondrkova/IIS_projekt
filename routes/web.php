@@ -45,6 +45,8 @@ Route::patch('/user/{id}/edit', [UserController::class, 'update'])->name('user.u
 Route::get('/login', [AuthController::class, 'login_form'])->name('auth.login_form');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
 Route::get('/register', [AuthController::class, 'register_form'])->name('auth.register_form');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 

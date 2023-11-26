@@ -58,4 +58,12 @@ class AuthController extends Controller
 
         return redirect(route('auth.login_form'))->with("success", "Registrácia prebehla úspešne! Teraz sa môžete prihlásiť.");
     }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect(route('auth.login_form'))->with('success', 'You have been successfully logged out.');
+    }
 }
