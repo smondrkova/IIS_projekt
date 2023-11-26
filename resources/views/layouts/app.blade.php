@@ -40,11 +40,22 @@
             <a href="{{ route('events.index') }}" class="text-white">Domov</a>
             <a href="{{ route('events.search_categories') }}" class="text-white">Prehľadávať</a>
             @auth
-            {{-- Show the profile button if the user is authenticated --}}
-            <a href="{{ route('user.show', auth()->user()->id) }}" class="text-white">Profil</a>
+                {{-- Show the profile button if the user is authenticated --}}
+                <a href="{{ route('user.show', auth()->user()->id) }}" class="text-white">Profil</a>
+
+                {{-- Show the "Approve" button for moderators and admins --}}
+                @if(auth()->user()->id == 1 || auth()->user()->id == 2)
+                    <a href="{{ route('approve') }}" class="text-white">Schváliť</a>
+
+                    {{-- Show the "Manage Users" button for admins --}}
+                    @if(auth()->user()->id == 1)
+                        <a href="{{ route('manage_users') }}" class="text-white">Spravovať užívateľov</a>
+                    @endif
+                @endif
+
             @else
-            {{-- Show the login/register button if the user is not authenticated --}}
-            <a href="{{ route('auth.login_form') }}" class="text-white">Prihlásenie/Registrácia</a>
+                {{-- Show the login/register button if the user is not authenticated --}}
+                <a href="{{ route('auth.login_form') }}" class="text-white">Prihlásenie</a>
             @endauth
             <a href="{{ route('events.create_request') }}" class="text-white">+ Vytvoriť žiadosť</a>
         </div>

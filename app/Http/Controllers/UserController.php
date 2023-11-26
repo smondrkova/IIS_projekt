@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use Hash;
 
@@ -63,6 +64,30 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('user.show', ['id' => $id])->with('success', 'Profil bol úspešne upravený.');
+    }
+
+    public function approve()
+    {
+        // Your logic for the approve action
+        return view('approve'); // Assuming you have a blade view named 'approve.blade.php'
+    }
+
+    public function manageUsers()
+    {
+        $users = User::where('id', '>', 5)->get();
+        return view('manage_users', compact('users'));
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        if ($user)
+        {
+            $user->delete();
+            return redirect()->route('manage_users')->with('success', 'User deleted successfully!');
+        } else {
+            return redirect()->route('manage_users')->with('error', 'User not found!');
+        }
     }
 
 }

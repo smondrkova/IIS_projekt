@@ -50,6 +50,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::get('/register', [AuthController::class, 'register_form'])->name('auth.register_form');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
+Route::get('/approve', [UserController::class, 'approve'])->name('approve');
+
+Route::get('/manage_users', [UserController::class, 'manageUsers'])->name('manage_users');
+Route::delete('/delete_user/{id}', [UserController::class, 'deleteUser'])->name('delete_user');
+
 Route::get('/place/{id}-{name}', [EventController::class, 'place_detail'])->name('events.places');
 Route::get('/search_categories/{id}-{name}', [EventController::class, 'category_page'])->name('events.category_page');
 
@@ -61,44 +66,4 @@ Route::post('/create_category', [EventController::class, 'store_category'])->nam
 
 Route::get('/create_place', [EventController::class, 'create_place'])->name('events.create_place');
 Route::post('/create_place', [EventController::class, 'store_place'])->name('events.store_place');
-
-
-// Route::view('/tasks/create', 'create')->name('tasks.create');
-
-// Route::get('/tasks/{task}/edit', function(Task $task){
-//     return view('edit', ['task'=>$task]);
-// })->name('tasks.edit');
-
-// Route::get('/tasks/{task}', function(Task $task){
-//     return view('show', ['task'=>$task]);
-// })->name('tasks.show');
-
-// Route::post('/tasks', function(TaskRequest $request){
-//     $task = Task::create($request->validated());
-//     return redirect()->route('tasks.show', ['task'=>$task->id])
-//         ->with('success', 'Task created successfully!');
-// })->name('tasks.store');
-
-// Route::put('/tasks/{task}', function(Task $task, TaskRequest $request){
-//     $task->update($request->validated());
-//     return redirect()->route('tasks.show', ['task'=>$task->id])
-//         ->with('success', 'Task updated successfully!');
-// })->name('tasks.update');
-
-// Route::delete('/tasks/{task}', function(Task $task){
-//    $task->delete();
-//    return redirect()->route('tasks.index')->with(
-//        'success', 'Task deleted successfully!'
-//    );
-// })->name('tasks.destroy');
-
-// Route::put('tasks/{task}/toggle-complete', function(Task $task){
-//     $task->toggleComplete();
-
-//    return redirect()->back()->with('success', 'Task updated successfully');
-// })->name('tasks.toggle-complete');
-
-// Route::fallback(function(){
-//     return 'Still got somewhere!';
-// });
 
