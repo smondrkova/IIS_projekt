@@ -29,7 +29,9 @@ class EventController extends Controller
             $backButtonLink = route('events.index');
         } else if (strpos($referrer, 'search_categories')) {
             $backButtonLink = route('events.search_categories');
-        } 
+        } elseif (preg_match('/\/user\/\d+/', $referrer)) {
+            $backButtonLink = route('user.show', ['id' => Auth::user()->id]);
+        }
 
         $event = Event::findOrFail($id); // Fetch the event by its ID
 

@@ -29,15 +29,23 @@
         <h1 class="text-2xl font-bold mb-4">Moje udalosti</h1>
 
         @if($user->events->isNotEmpty())
-            <ul>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
                 @foreach($user->events->sortBy('date_of_event') as $event)
-                    <li>
-                        <a href="{{ route('events.show', ['id' => $event->place->id, 'name' => $event->place->name]) }}" class="font-bold">{{ $event->event_name }}</a>
-                        {{ $event->date_of_event }} 
-                        {{ $event->time_of_event }}
-                    </li>
+                    <div style="display: flex; gap: 15px; align-items: center; padding: 10px;">
+                        
+                        <a href="{{ route('events.show', ['id' => $event->place->id, 'name' => $event->place->name]) }}" style="width: 300px;" class="font-bold">{{ $event->event_name }}</a>
+                        <span>{{ $event->date_of_event }}</span>
+                        <span>{{ $event->time_of_event }}</span>
+                        
+                        <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-primary" id='odhlasitSaButton'>Odregistrovať sa</button>
+                        </form>
+
+                    </div>
                 @endforeach
-                </ul>
+            </div>
         @else
             <p>Aktuálne nie ste zaregistrovaný na žiadnej udalosti.</p>
         @endif

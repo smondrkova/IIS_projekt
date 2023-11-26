@@ -40,7 +40,7 @@
                             <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-primary" id='odhlasitSaButton'>Odhlásiť sa</button>
+                                <button type="submit" class="btn btn-primary" id='odhlasitSaButton'>Odregistrovať sa</button>
                             </form>
                         </div>
                     </div>
@@ -48,47 +48,5 @@
             </div>
         </div>
     </div>
-
-    <!-- <script>
-        function updateButtonVisibility() {
-            var registerButton = document.getElementById('registerButton');
-            var odhlasitSaButton = document.getElementById('odhlasitSaButton');
-
-            if (isLoggedIn() && !isRegisteredToTheEvent()) {
-                registerButton.style.display = 'block';
-                odhlasitSaButton.style.display = 'none';
-            } else if (isLoggedIn() && isRegisteredToTheEvent() ) {
-                registerButton.style.display = 'none';
-                odhlasitSaButton.style.display = 'block';
-            } else {
-                registerButton.style.display = 'block';
-                odhlasitSaButton.style.display = 'none';
-            }
-        }
-
-        updateButtonVisibility();
-
-        document.getElementById('registerButton').addEventListener('click', function() {
-            updateButtonVisibility();
-        });
-
-        document.getElementById('odhlasitSaButton').addEventListener('click', function() {
-            updateButtonVisibility();
-        });
-
-        function isLoggedIn() {
-            // Assuming you have a way to check if the user is signed in
-            // You can use Laravel's authentication system for this
-            // For example, if(Auth::check()) in Laravel
-            // Replace this function with your actual check
-            return true; // Replace with your actual check
-        }
-
-        function isRegisteredToTheEvent() {
-            // Assuming you have a way to check if the user is registered
-            // Replace this function with your actual check
-            return true; // Replace with your actual check
-        }
-    </script> -->
 @endsection
 
