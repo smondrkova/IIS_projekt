@@ -34,6 +34,7 @@ class EventController extends Controller
     public function search_categories()
     {
         $categories = Category::all(); // Fetch categories from the database
+        $categories = Category::orderBy('name', 'asc')->get();
 
         return view('search_categories', compact('categories'));
     }
@@ -42,6 +43,7 @@ class EventController extends Controller
     {
         $selectedCategory = Category::findOrFail($id); // Fetch the category by its ID
         $categories = Category::all(); // Fetch categories from the database
+        $categories = Category::orderBy('name', 'asc')->get();
 
         return view('category', compact('selectedCategory', 'categories'));
     }
@@ -75,38 +77,38 @@ class EventController extends Controller
         return view('create_place');
     }
 
-    public function store_event(Request $request)
-    {
-        // Validate the request
-        $validatedData = $request->validate([
-            'event_name' => 'required|string|unique:events,event_name',
-            'date_of_event' => 'required|date|after_or_equal:today',
-            'time_of_event' => [
-                'required',
-                'date_format:H:i',
-                function ($attribute, $value, $fail) use ($request) {
-                    // Check time only if the date is today
-                    if ($request->input('date_of_event') == now()->format('Y-m-d') && strtotime($value) < strtotime(now()->format('H:i'))) {
-                        $fail('Čas udalosti musí byť v budúcnosti.');
-                    }
-                },
-            ],
-            'place_of_event' => 'required|exists:places,id',
-            'entry_fee' => 'nullable|numeric',
-            'category' => 'required|exists:categories,id',
-            'description' => 'required|string',
-            'photo' => 'nullable|string',
-        ], [
-            'event_name.unique' => 'Názov udalosti je už obsadený. Prosím, vyberte si unikátny názov.',
-            'date_of_event.after_or_equal' => 'Dátum udalosti musí byť v budúcnosti.',
-        ]);
+        public function store_event(Request $request)
+        {
+            // Validate the request
+            $validatedData = $request->validate([
+                'event_name' => 'required|string|unique:events,event_name',
+                'date_of_event' => 'required|date|after_or_equal:today',
+                'time_of_event' => [
+                    'required',
+                    'date_format:H:i',
+                    function ($attribute, $value, $fail) use ($request) {
+                        // Check time only if the date is today
+                        if ($request->input('date_of_event') == now()->format('Y-m-d') && strtotime($value) < strtotime(now()->format('H:i'))) {
+                            $fail('Čas udalosti musí byť v budúcnosti.');
+                        }
+                    },
+                ],
+                'place_of_event' => 'required|exists:places,id',
+                'entry_fee' => 'nullable|numeric',
+                'category' => 'required|exists:categories,id',
+                'description' => 'required|string',
+                'photo' => 'nullable|string',
+            ], [
+                'event_name.unique' => 'Názov udalosti je už obsadený. Prosím, vyberte si unikátny názov.',
+                'date_of_event.after_or_equal' => 'Dátum udalosti musí byť v budúcnosti.',
+            ]);
 
-        // Create a new event using the validated data
-        Event::create($validatedData);
+            // Create a new event using the validated data
+            Event::create($validatedData);
 
-        // Redirect back or wherever you want after the event is created
-        return redirect()->route('events.index')->with('success', 'Event úspešne vytvorený!');
-    }
+            // Redirect back or wherever you want after the event is created
+            return redirect()->route('events.index')->with('success', 'Udalosť úspešne vytvorená!');
+        }
 
     public function store_category(Request $request)
     {
