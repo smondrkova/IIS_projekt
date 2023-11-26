@@ -17,9 +17,11 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        static $id = 6; // First 5 users are reserved for the admins and moderators.
         $eventIds = $this->faker->unique()->randomElements(range(1, 10), 3);
         
         return [
+            'id' => $id++,
             'name' => $this->faker->firstName(),
             'surname' => $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail(),

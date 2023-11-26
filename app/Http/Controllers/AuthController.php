@@ -45,7 +45,8 @@ class AuthController extends Controller
             'surname' => 'required|string',
             'email' => 'required|email|unique:users,email,',
             'password' => 'required|string|min:8|confirmed',
-            'phone_number' => 'nullable|string'
+            'phone_number' => 'nullable|string',
+            'remember_token' => str_random(10),
         ], [
             'email.unique' => 'Tento email už existuje, zvoľte iný alebo sa prihláste.',
             'password.min' => 'Heslo musí mať aspoň 8 znakov.',
