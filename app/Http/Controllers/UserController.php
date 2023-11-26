@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Hash;
@@ -78,8 +79,25 @@ class UserController extends Controller
 
     public function approve()
     {
-        // Your logic for the approve action
-        return view('approve'); // Assuming you have a blade view named 'approve.blade.php'
+        $events = Event::where('approved', false)->get();
+        return view('approve', compact('events'));
+    }
+
+    public function approveEvent($id)
+    {
+        $event = Event::find($id);
+        $event->approved = true;
+        $event->save();
+
+        return redirect()->route('approve')->with('success', 'Event approved successfully!');
+    }
+
+    public function deleteEvent($id)
+    {
+        $event = Event::find($id);
+        $event->delete();
+
+        return redirect()->route('approve')->with('success', 'Event deleted successfully!');
     }
 
     public function manageUsers()

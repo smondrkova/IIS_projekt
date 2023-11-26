@@ -54,6 +54,8 @@ Route::get('/register', [AuthController::class, 'register_form'])->name('auth.re
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 Route::get('/approve', [UserController::class, 'approve'])->name('approve');
+Route::put('/approve/{id}', [UserController::class, 'approveEvent'])->name('approve_event');
+Route::delete('/delete_event/{id}', [UserController::class, 'deleteEvent'])->name('delete_event');
 
 Route::get('/manage_users', [UserController::class, 'manageUsers'])->name('manage_users');
 Route::delete('/delete_user/{id}', [UserController::class, 'deleteUser'])->name('delete_user');
