@@ -23,7 +23,8 @@ class EventController extends Controller
     public function event_detail($id, Request $request)
     {
         $referrer = $request->headers->get('referer'); // Get the URL of the previous page
-
+        $backButtonLink = route('events.index'); // Default back button link
+        
         if (strpos($referrer, 'events')) {
             $backButtonLink = route('events.index');
         } else if (strpos($referrer, 'search_categories')) {

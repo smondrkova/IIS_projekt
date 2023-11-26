@@ -32,7 +32,7 @@
             <ul>
                 @foreach($user->events->sortBy('date_of_event') as $event)
                     <li>
-                        <strong>{{ $event->event_name }}</strong> - 
+                        <a href="{{ route('events.show', ['id' => $event->place->id, 'name' => $event->place->name]) }}" class="font-bold">{{ $event->event_name }}</a>
                         {{ $event->date_of_event }} 
                         {{ $event->time_of_event }}
                     </li>
