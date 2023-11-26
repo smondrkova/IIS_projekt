@@ -11,13 +11,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Vytvoriť nové miesto konania</h2>
+    <div class="container p-8 pl-20">
+        <h2 class="text-2xl font-bold mb-4">Vytvoriť nové miesto konania</h2>
 
         <form action="{{ route('events.store_place') }}" method="POST">
             @csrf
 
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="name">Názov miesta</label>
                 <input type="text" name="name" id="name" class="form-control" required>
                 @error('name')
@@ -25,7 +25,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="address">Adresa miesta</label>
                 <input type="text" name="address" id="address" class="form-control" required>
                 @error('address')
@@ -33,17 +33,18 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label for="description">Popis miesta</label>
                 <textarea name="description" id="description" class="form-control" required></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="photo">Fotka miesta</label>
+            <div class="form-group mb-4">
+                <label for="photo">Fotografia miesta</label>
                 <input type="file" name="photo" id="photo" class="form-control-file">
             </div>
 
             <button type="submit" class="btn btn-primary">Vytvoriť miesto</button>
+            <a href="{{ url()->previous() }}" class="btn btn-primary">Späť</a>
         </form>
     </div>
 @endsection

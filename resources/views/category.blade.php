@@ -37,7 +37,7 @@
                             style="width: 450px;">
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">{{ $event->event_name }}</div>
-                            <p class="text-md">{{ $event->date_of_event }} at {{ $event->time_of_event }}</p>
+                            <p class="text-md">{{ $event->date_of_event }} o {{ $event->time_of_event }}</p>
                             <p class="text-md">{{ $event->place->name }}</p>
                         </div>
                         <div class="px-6 pb-2">
