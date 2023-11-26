@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Place;
 use App\Models\Category;
+use Storage;
 use Auth;
 
 class EventController extends Controller
@@ -108,11 +109,19 @@ class EventController extends Controller
                 'entry_fee' => 'nullable|numeric',
                 'category' => 'required|exists:categories,id',
                 'description' => 'required|string',
-                'photo' => 'nullable|string',
+                'photo' => 'sometimes|nullable|image|mimes:jpeg,png,jpg',
             ], [
                 'event_name.unique' => 'Názov udalosti je už obsadený. Prosím, vyberte si unikátny názov.',
                 'date_of_event.after_or_equal' => 'Dátum udalosti musí byť v budúcnosti.',
             ]);
+
+            // Store the photo
+            if ($request->hasFile('photo')) {
+                $imagePath = $request->file('photo')->store('event_photos', 'public');
+                $validatedData['photo'] = basename($imagePath);
+            } else {
+                $validatedData['photo'] = null;
+            }
 
             // Create a new event using the validated data
             Event::create($validatedData);
@@ -144,11 +153,19 @@ class EventController extends Controller
             'name' => 'required|string|unique:places,name',
             'address' => 'required|string|unique:places,address',
             'description' => 'required|string',
-            'photo' => 'nullable|string',
+            'photo' => 'sometimes|nullable|image|mimes:jpg,jpeg,png',
         ], [
             'name.unique' => 'Názov miesta je už obsadený. Prosím, vyberte si unikátny názov.',
             'address.unique' => 'Adresa miesta je už obsadená. Prosím, vyberte si unikátnu adresu.',
         ]);
+
+        // Store the photo
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo')->store('place_photos', 'public');
+            $validatedData['photo'] = basename($imagePath);
+        } else {
+            $validatedData['photo'] = null;
+        }
 
         // Create a new place using the validated data
         Place::create($validatedData);
