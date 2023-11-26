@@ -20,49 +20,42 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string'
+        ], [
+            'email.required' => 'Email je povinný.',
+            'email.email' => 'Email neexistuje.',
+            'password.required' => 'Heslo je povinné.',
         ]);
-        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended(route('events.index'));
+            return redirect()->route('events.index')->with("success", "Prihlásenie prebehlo úspešne!");
         }
 
         return redirect()->route('auth.login_form')->with("error", "Invalid credentials");
     }
 
+    // $data['password'] = Hash::make($request->password);
     public function register(Request $request) {
         
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users',
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'email' => 'required|email|unique:users,email,',
             'password' => 'required|string|min:8|confirmed',
-            'phone_number' => 'required|string|min:10|max:15'
+            'phone_number' => 'nullable|string'
+        ], [
+            'email.unique' => 'Tento email už existuje, zvoľte iný alebo sa prihláste.',
+            'password.min' => 'Heslo musí mať aspoň 8 znakov.',
+            'password.confirmed' => 'Heslá sa nezhodujú.',
         ]);
 
-        $data['name'] = $request->name;
-        $data['surname'] = $request->surname;
-        $data['email'] = $request->email;
-        $data['password'] = Hash::make($request->password);
-        $data['phone_number'] = $request->phone_number;
-        $user = User::create($data);
+        $validatedData['password'] = Hash::make($request->input('password'));
 
-        if(!$user) {
-            return redirect(route('auth.register_form'))->with("error", "Registration failed, try again");
-        }
+        User::create($validatedData);
 
-        /*[
-            'name' => $request->input('name'),
-            'surname' => $request->input('surname'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'phone_number' => $request->input('phone_number')
-        ]*/
-
-        return redirect(route('auth.login_form'))->with("success", "Registration successful, login now");
+        return redirect(route('auth.login_form'))->with("success", "Registrácia prebehla úspešne! Teraz sa môžete prihlásiť.");
     }
 }

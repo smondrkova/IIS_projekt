@@ -16,22 +16,34 @@
 
             <div class="mb-4">
                 <label for="name">Meno</label>
-                <input type="text" name="name" id="name" value="{{ old('name') }}" required autofocus>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" required>
+                @error('name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="surname">Priezvisko</label>
                 <input type="text" name="surname" id="surname" value="{{ old('surname') }}" required>
+                @error('surname')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                @error('email')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="password">Heslo</label>
                 <input type="password" name="password" id="password" required>
+                @error('password')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-4">
@@ -41,10 +53,11 @@
 
             <div class="mb-4">
                 <label for="phone">Telefón (nepovinný)</label>
-                <input type="text" name="phone" id="phone" value="{{ old('phone') }}">
+                <input type="text" name="phone" id="phone">
             </div>
 
-            <button type="submit">Register</button>
+            <button type="submit" class="btn btn-primary">Registrácia</button>
+            <a href="{{ route('auth.login_form') }}" class="btn btn-secondary">Už máš účet? Prihlás sa.</a>
         </form>
     </div>
 @endsection

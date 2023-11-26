@@ -37,13 +37,18 @@ Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/{id}-{name}', [EventController::class, 'event_detail'])->name('events.show');
 Route::get('/search_categories', [EventController::class, 'search_categories'])->name('events.search_categories');
 Route::get('/create_request', [EventController::class, 'create_request'])->name('events.create_request');
+
 Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
 Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::patch('/user/{id}/edit', [UserController::class, 'update'])->name('user.update');
+
 Route::get('/login', [AuthController::class, 'login_form'])->name('auth.login_form');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+
 Route::get('/register', [AuthController::class, 'register_form'])->name('auth.register_form');
-Route::post('/register', [AuthController::class, 'register'])->name('auth.register');Route::get('/place/{id}-{name}', [EventController::class, 'place_detail'])->name('events.places');
+Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
+
+Route::get('/place/{id}-{name}', [EventController::class, 'place_detail'])->name('events.places');
 Route::get('/search_categories/{id}-{name}', [EventController::class, 'category_page'])->name('events.category_page');
 
 Route::get('/create_event', [EventController::class, 'create_event'])->name('events.create_event');

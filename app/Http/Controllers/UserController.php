@@ -22,27 +22,47 @@ class UserController extends Controller
         return view('user_edit', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $user = Auth::user();
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,',
-            'phone_number' => 'nullable|string|min:10|max:15',
-            'password' => 'nullable|string|min:8|confirmed',
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone_number' => 'nullable|string',
+            'password' => 'required|string|min:8|confirmed',
+        ], [
+            'password.confirmed' => 'The password confirmation does not match.',
         ]);
 
-        $user->update([
-            'name' => $request->input('name'),
-            'surname' => $request->input('surname'),
-            'email' => $request->input('email'),
-            'phone_number' => $request->input('phone_number'),
-            'password' => $request->filled('password') ? bcrypt($request->input('password')) : $user->password,
-        ]);
+        // Find the user by ID
+        $user = User::findOrFail($id);
 
-        return redirect()->route('events.index')->with('success', 'Profile updated successfully!');
+        // Update the user's attributes if the fields are not empty
+    if ($validatedData['name']) {
+        $user->name = $validatedData['name'];
+    }
+
+    if ($validatedData['surname']) {
+        $user->surname = $validatedData['surname'];
+    }
+
+    if ($validatedData['email']) {
+        $user->email = $validatedData['email'];
+    }
+
+    if ($validatedData['phone_number']) {
+        $user->phone_number = $validatedData['phone_number'];
+    }
+
+    // Update the password if provided
+    if ($validatedData['password']) {
+        $user->password = bcrypt($validatedData['password']);
+    }
+
+        // Save the changes
+        $user->save();
+
+        return redirect()->route('user.show', ['id' => $id])->with('success', 'Profil bol úspešne upravený.');
     }
 
 }

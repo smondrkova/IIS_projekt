@@ -1,4 +1,4 @@
-<!-- resources/views/user.blade.php -->
+<!-- resources/views/user_edit.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,28 +13,28 @@
     <div class="container">
         <h1><strong>Edit Your Profile</strong></h1>
 
-        <form method="POST" action="{{ route('user.update') }}">
+        <form action="{{ route('user.update', ['id' => $user->id]) }}" method="POST">
             @csrf
             @method('PATCH')
 
             <div class="mb-4">
                 <label for="name">Meno</label>
-                <input type="text" name="name" id="name" value="{{ $user->name ?? old('name') }}" required>
+                <input type="text" name="name" id="name" placeholder="{{ $user->name }}">
             </div>
 
             <div class="mb-4">
                 <label for="surname">Priezvisko</label>
-                <input type="text" name="surname" id="surname" value="{{ $user->surname ?? old('surname') }}" required>
+                <input type="text" name="surname" id="surname" placeholder="{{ $user->surname }}">
             </div>
 
             <div class="mb-4">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" value="{{ $user->email ?? old('email') }}" required>
+                <input type="email" name="email" id="email" placeholder="{{ $user->email }}">
             </div>
 
             <div class="mb-4">
                 <label for="phone">Telefón</label>
-                <input type="text" name="phone" id="phone" value="{{ $user->phone_number ?? old('phone_number') }}">
+                <input type="text" name="phone" id="phone" placeholder="{{ $user->phone_number }}">
             </div>
 
             <div class="mb-4">
@@ -47,7 +47,7 @@
                 <input type="password" name="password_confirmation" id="password_confirmation">
             </div>
 
-            <button type="submit">Upraviť</button>
+            <button type="submit" class="btn btn-primary">Upraviť</button>
         </form>
     </div>
 @endsection

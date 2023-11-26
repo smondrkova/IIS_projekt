@@ -41,7 +41,7 @@
             <a href="{{ route('events.search_categories') }}" class="text-white">Prehľadávať</a>
             @auth
             {{-- Show the profile button if the user is authenticated --}}
-            <a href="{{ route('user.show') }}" class="text-white">Profil</a>
+            <a href="{{ route('user.show', auth()->user()->id) }}" class="text-white">Profil</a>
             @else
             {{-- Show the login/register button if the user is not authenticated --}}
             <a href="{{ route('auth.login_form') }}" class="text-white">Prihlásenie/Registrácia</a>
