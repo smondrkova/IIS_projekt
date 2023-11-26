@@ -19,22 +19,22 @@
 
             <div class="form-group mb-4">
                 <label for="name">Meno</label>
-                <input type="text" name="name" id="name" placeholder="{{ $user->name }}">
+                <input type="text" name="name" id="name" value="{{ $user->name }}">
             </div>
 
             <div class="form-group mb-4">
                 <label for="surname">Priezvisko</label>
-                <input type="text" name="surname" id="surname" placeholder="{{ $user->surname }}">
+                <input type="text" name="surname" id="surname" value="{{ $user->surname }}">
             </div>
 
             <div class="form-group mb-4">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="{{ $user->email }}">
+                <input type="email" name="email" id="email" value="{{ $user->email }}">
             </div>
 
             <div class="form-group mb-4">
-                <label for="phone">Telefón</label>
-                <input type="text" name="phone" id="phone" placeholder="{{ $user->phone_number }}">
+                <label for="phone_number">Telefón</label>
+                <input type="text" name="phone_number" id="phone_number" value="{{ $user->phone_number }}">
             </div>
 
             <div class="form-group mb-4">
@@ -48,7 +48,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Upraviť</button>
-            <a href="{{ url()->previous() }}" class="btn btn-primary">Späť</a>
+            <a href="{{ route('user.show', auth()->user()->id) }}" class="btn btn-primary">Späť</a>
         </form>
     </div>
 @endsection

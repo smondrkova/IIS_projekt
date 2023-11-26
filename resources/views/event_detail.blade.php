@@ -35,16 +35,14 @@
                         <br>
                         <div class="button-container">
                             <a href="{{ $backButtonLink }}" class="btn btn-primary">Späť</a>
-
-                            <form method="POST" action="{{ route('events.register', ['id' => $event->id, 'name' => $event->event_name]) }}">
-                                @csrf
-                                <button type="submit" class="btn btn-primary" id='registerButton'>Registrovať sa</button>
-                            </form>
-
                             <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-primary" id='odhlasitSaButton'>Odregistrovať sa</button>
+                            </form>
+                            <form method="POST" action="{{ route('events.register', ['id' => $event->id, 'name' => $event->event_name]) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-primary" id='registerButton'>Registrovať sa</button>
                             </form>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Event;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -60,7 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function events()
     {
-        return $this->belongsToMany(Event::class)->withTimestamps();;
+        return $this->belongsToMany(Event::class);
     }
 
     public function isRegisteredToTheEvent($eventId)
