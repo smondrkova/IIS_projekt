@@ -56,6 +56,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 Route::get('/approve', [UserController::class, 'approve'])->name('approve');
 Route::put('/approve/{id}', [UserController::class, 'approveEvent'])->name('approve_event');
 Route::delete('/delete_event/{id}', [UserController::class, 'deleteEvent'])->name('delete_event');
+Route::put('/approve_category/{id}', [UserController::class, 'approveCategory'])->name('approve_category');
+Route::delete('/delete_category/{id}', [UserController::class, 'deleteCategory'])->name('delete_category');
+Route::put('/approve_place/{id}', [UserController::class, 'approvePlace'])->name('approve_place');
+Route::delete('/delete_place/{id}', [UserController::class, 'deletePlace'])->name('delete_place');
 
 Route::get('/manage_users', [UserController::class, 'manageUsers'])->name('manage_users');
 Route::delete('/delete_user/{id}', [UserController::class, 'deleteUser'])->name('delete_user');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Place;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Hash;
@@ -80,7 +82,9 @@ class UserController extends Controller
     public function approve()
     {
         $events = Event::where('approved', false)->get();
-        return view('approve', compact('events'));
+        $categories = Category::where('approved', false)->get();
+        $places = Place::where('approved', false)->get();
+        return view('approve', compact('events', 'categories', 'places'));
     }
 
     public function approveEvent($id)
@@ -89,7 +93,7 @@ class UserController extends Controller
         $event->approved = true;
         $event->save();
 
-        return redirect()->route('approve')->with('success', 'Event approved successfully!');
+        return redirect()->route('approve')->with('success', 'Event bol úspešne schválený.');
     }
 
     public function deleteEvent($id)
@@ -97,7 +101,41 @@ class UserController extends Controller
         $event = Event::find($id);
         $event->delete();
 
-        return redirect()->route('approve')->with('success', 'Event deleted successfully!');
+        return redirect()->route('approve')->with('success', 'Event bol úspešne zmazaný.');
+    }
+
+    public function approvePlace($id)
+    {
+        $place = Place::find($id);
+        $place->approved = true;
+        $place->save();
+
+        return redirect()->route('approve')->with('success', 'Miesto bolo úspešne schválené.');
+    }
+
+    public function deletePlace($id)
+    {
+        $place = Place::find($id);
+        $place->delete();
+
+        return redirect()->route('approve')->with('success', 'Miesto bolo úspešne zmazané.');
+    }
+
+    public function approveCategory($id)
+    {
+        $category = Category::find($id);
+        $category->approved = true;
+        $category->save();
+
+        return redirect()->route('approve')->with('success', 'Kateória bola úspešne schválená.');
+    }
+
+    public function deleteCategory($id)
+    {
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect()->route('approve')->with('success', 'Kateória bola úspešne zmazaná.');
     }
 
     public function manageUsers()
