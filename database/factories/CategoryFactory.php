@@ -19,6 +19,7 @@ class CategoryFactory extends Factory
         $names = ['Education', 'Music', 'Night life', 'Culture', 'Games', 'Food', 'Health', 'Sports', 'Technology', 'Travel'];
         return [
             'name' => $this->faker->unique()->randomElement($names),
+            'approved' => $this->faker->boolean(true),
         ];
     }
 }

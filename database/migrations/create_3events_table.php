@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('category')->constrained('categories'); // Foreign key to the 'categories' table.
             $table->text('description');
             $table->string('photo')->nullable(); // Assuming the photo is a string representing the file path or URL.
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }

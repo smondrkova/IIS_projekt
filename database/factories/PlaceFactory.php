@@ -21,6 +21,7 @@ class PlaceFactory extends Factory
             'address' => $this->faker->unique()->address,
             'description' => $this->faker->text,
             'photo' => $this->faker->word,
+            'approved' => $this->faker->boolean(true),
         ];
     }
 }
