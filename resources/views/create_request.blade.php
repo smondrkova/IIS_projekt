@@ -15,9 +15,9 @@
         @auth
             <h2 class="text-2xl font-bold mb-4">Vytvorenie novej žiadosti</h2>
             <div class="button-container">
-                <a href="{{ route('events.create_event') }}" class="btn btn-primary">Vytvoriť novú udalosť</a>
-                <a href="{{ route('events.create_category') }}" class="btn btn-primary">Vytvoriť novú kategóriu</a>
-                <a href="{{ route('events.create_place') }}" class="btn btn-primary">Vytvoriť nové miesto</a>
+                <a href="{{ route('events.create_event') }}" class="btn">Vytvoriť novú udalosť</a>
+                <a href="{{ route('events.create_category') }}" class="btn">Vytvoriť novú kategóriu</a>
+                <a href="{{ route('events.create_place') }}" class="btn">Vytvoriť nové miesto</a>
             </div>
         @else
             <p class="text-xl font-bold mb-4">
@@ -31,8 +31,8 @@
             </p>
 
             <div class="button-container pl-5">
-                <a href="{{ route('auth.register_form') }}" class="btn btn-primary">Registrovať sa</a>
-                <a href="{{ route('auth.login_form') }}" class="btn btn-primary">Prihlásiť sa</a>
+                <a href="{{ route('auth.register_form') }}" class="btn">Registrovať sa</a>
+                <a href="{{ route('auth.login_form') }}" class="btn">Prihlásiť sa</a>
             </div>
         @endauth
     </div>
