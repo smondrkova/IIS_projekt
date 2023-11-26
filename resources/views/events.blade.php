@@ -17,7 +17,7 @@
                     
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2">{{ $event->event_name }}</div>
-                        <p class="text-lg">{{ $event->date_of_event }} o {{ $event->time_of_event }}</p>
+                        <p class="text-lg">{{ \Carbon\Carbon::parse($event->date_of_event)->format('d.m.Y') }} o {{ $event->time_of_event }}</p>
                         <p class="text-lg">{{ $event->place->name }}</p>
                     </div>
 

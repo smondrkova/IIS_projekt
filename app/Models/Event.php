@@ -21,8 +21,6 @@ class Event extends Model
         'approved'
     ];
 
-    protected $dates = ['date_of_event'];
-
     /**
      * The primary key for the model.
      *

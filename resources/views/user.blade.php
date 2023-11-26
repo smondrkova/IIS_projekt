@@ -30,24 +30,58 @@
 
         @if($user->events->isNotEmpty())
             <div style="display: flex; flex-direction: column; gap: 10px;">
-                @foreach($user->events->sortBy('date_of_event') as $event)
-                    <div style="display: flex; gap: 15px; align-items: center; padding: 10px;">
-                        
-                        <a href="{{ route('events.show', ['id' => $event->place->id, 'name' => $event->place->name]) }}" style="width: 300px;" class="font-bold">{{ $event->event_name }}</a>
-                        <span>{{ $event->date_of_event }}</span>
-                        <span>{{ $event->time_of_event }}</span>
-                        
-                        <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-primary" id='odhlasitSaButton'>Odregistrovať sa</button>
-                        </form>
+                @php
+                    $groupedEvents = $user->events->groupBy(function($event) {
+                        $carbonDate = \Carbon\Carbon::parse($event->date_of_event);
+                        if ($carbonDate->isToday()) {
+                            return 'today';
+                        } elseif ($carbonDate->isTomorrow()) {
+                            return 'tomorrow';
+                        } elseif ($carbonDate->isNextWeek()) {
+                            return 'next_week';
+                        } elseif ($carbonDate->isNextMonth()) {
+                            return 'next_month';
+                        } else {
+                            return 'later';
+                        }
+                    });
+                @endphp
 
-                    </div>
+                @foreach(['today', 'tomorrow', 'next_week', 'next_month', 'later'] as $group)
+                    @if($groupedEvents->has($group))
+                        <h2 class="text-xl font-bold">
+                            @if($group === 'today')
+                                Dnes
+                            @elseif($group === 'tomorrow')
+                                Zajtra
+                            @elseif($group === 'next_week')
+                                Nabudúci týždeň
+                            @elseif($group === 'next_month')
+                                Nabudúci mesiac
+                            @else
+                                Neskôr
+                            @endif
+                        </h2>
+
+                        @foreach($groupedEvents[$group] as $event)
+                            <div style="display: flex; gap: 15px; align-items: center;border: 3px solid #0c151b; width:600px; border-radius: 5px;" class="mb-4 pl-10 p-2">
+                                <a href="{{ route('events.show', ['id' => $event->id, 'name' => $event->event_name]) }}" style="width: 200px;" class="font-bold">{{ $event->event_name }}</a>
+                                <span>{{ \Carbon\Carbon::parse($event->date_of_event)->format('d.m.Y') }}</span>
+                                <span>{{ $event->time_of_event }}</span>
+                                
+                                <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn">Odregistrovať sa</button>
+                                </form>
+                            </div>
+                        @endforeach
+                    @endif
                 @endforeach
             </div>
         @else
             <p>Aktuálne nie ste zaregistrovaný na žiadnej udalosti.</p>
         @endif
+
     </div>
 @endsection
