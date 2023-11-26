@@ -38,6 +38,9 @@ Route::get('/events/{id}-{name}', [EventController::class, 'event_detail'])->nam
 Route::get('/search_categories', [EventController::class, 'search_categories'])->name('events.search_categories');
 Route::get('/create_request', [EventController::class, 'create_request'])->name('events.create_request');
 
+Route::post('/events/{id}-{name}/register_event', [EventController::class, 'registerOnEvent'])->name('events.register');
+Route::delete('/events/{id}-{name}/unregister', [EventController::class, 'unregisterFromEvent'])->name('events.unregister');
+
 Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
 Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::patch('/user/{id}/edit', [UserController::class, 'update'])->name('user.update');

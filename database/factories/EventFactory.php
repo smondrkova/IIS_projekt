@@ -32,7 +32,6 @@ class EventFactory extends Factory
             'description' => $this->faker->text,
             'photo' => $this->faker->word,
             'approved' => $this->faker->boolean(true),
-            'signed_up_users' => json_encode($userIds),
         ];
     }
 }

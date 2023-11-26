@@ -31,7 +31,7 @@
                 
                 <p class="text-lg font-bold mb-2">Udalosti z kategórie {{ $selectedCategory->name }}</p>
                 <div class="grid grid-cols-2 gap-4">
-                    @foreach ($selectedCategory->events as $event)
+                    @foreach ($events as $event)
                     <div class="card">
                         <img src="{{ asset('placeholders/placeholder.jpg') }}" class="w-full" alt="{{ $event->event_name }}"
                             style="width: 450px;">

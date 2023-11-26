@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Place;
 use App\Models\Category;
+use Auth;
 
 class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::latest()->take(9)->get(); // Fetch events from the database
+        $events = Event::latest()
+                        ->where('approved', true) 
+                        ->take(9)
+                        ->get(); // Fetch events from the database
 
         return view('events', compact('events'));
     }
@@ -28,7 +32,7 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id); // Fetch the event by its ID
 
-        return view('event_detail', compact('event'));
+        return view('event_detail', ['event' => $event, 'backButtonLink' => $backButtonLink]);
     }
 
     public function search_categories()
@@ -45,7 +49,11 @@ class EventController extends Controller
         $categories = Category::all(); // Fetch categories from the database
         $categories = Category::orderBy('name', 'asc')->get();
 
-        return view('category', compact('selectedCategory', 'categories'));
+        $events = $selectedCategory->events()
+                ->where('approved', true)
+                ->get();
+
+        return view('category', compact('selectedCategory', 'categories', 'events'));
     }
 
     public function create_request()
@@ -144,5 +152,29 @@ class EventController extends Controller
 
         // Redirect back or wherever you want after the place is created
         return redirect()->route('events.index')->with('success', 'Miesto udalosti vytvorené úspešne!');
+    }
+
+    public function registerOnEvent(Request $request, $eventId, $name)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('error', 'Iba prihlásený žívatelia sa môžu registrovať na udalosti.');
+        }
+
+        $event = Event::find($eventId);
+        $event->users()->attach($user->id);
+
+        return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('success', 'Boli ste úspešne registrovaný na túto udalosť.');
+    }
+
+    public function unregisterFromEvent(Request $request, $eventId, $name)
+    {
+        $user = Auth::user();
+
+        $event = Event::find($eventId);
+        $event->users()->detach($user->id);
+
+        return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('success', 'Boli ste úspešne odregistrovaný z tejto udalosti.');
     }
 }

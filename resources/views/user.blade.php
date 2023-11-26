@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container p-8 pl-20">
-        <h1 class="text-2xl font-bold mb-4">Môj profil</strong></h1>
+        <h1 class="text-2xl font-bold mb-4">Môj profil</h1>
         <br>
         <p><strong>Meno:</strong> {{ $user->name }}</p>
         <p><strong>Priezvisko:</strong> {{ $user->surname }}</p>
@@ -25,5 +25,21 @@
                 <button type="submit" class="btn btn-primary">Odhlásiť sa</button>
             </form>
         </div>
+        <br><br>
+        <h1 class="text-2xl font-bold mb-4">Moje udalosti</h1>
+
+        @if($user->events->isNotEmpty())
+            <ul>
+                @foreach($user->events->sortBy('date_of_event') as $event)
+                    <li>
+                        <strong>{{ $event->event_name }}</strong> - 
+                        {{ $event->date_of_event }} 
+                        {{ $event->time_of_event }}
+                    </li>
+                @endforeach
+                </ul>
+        @else
+            <p>Aktuálne nie ste zaregistrovaný na žiadnej udalosti.</p>
+        @endif
     </div>
 @endsection

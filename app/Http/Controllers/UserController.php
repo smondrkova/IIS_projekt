@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Hash;
+use Carbon\Carbon;
 
 class UserController extends Controller
 { 
@@ -14,7 +15,16 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('user', compact('user'));
+        $eventsByDate = $this->organizeEventsByDate($user->events);
+
+        return view('user', compact('user', 'eventsByDate'));
+    }
+
+    private function organizeEventsByDate($events)
+    {
+        return $events->sortBy('date_of_event')->groupBy(function($event) {
+            return Carbon::parse($event->date_of_event)->format('Y-m-d');
+        });
     }
 
     public function edit($id)

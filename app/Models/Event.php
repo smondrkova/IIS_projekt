@@ -17,8 +17,11 @@ class Event extends Model
         'entry_fee',
         'category',
         'description',
-        'photo'
+        'photo',
+        'approved'
     ];
+
+    protected $dates = ['date_of_event'];
 
     /**
      * The primary key for the model.
@@ -38,6 +41,11 @@ class Event extends Model
     public function categories()
     {
         return $this->belongsTo(Category::class, 'category');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();;
     }
     
     // public function toggleComplete(){
