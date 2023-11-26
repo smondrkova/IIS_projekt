@@ -30,9 +30,18 @@
                         <p class="card-text">{{ $event->description }}</p>
                         <br>
                         <div class="button-container">
-                            <a href="{{ route('events.index') }}" class="btn btn-primary">Späť</a>
-                            <button id="registerButton" class="btn btn-primary">Registrovať sa</button>
-                            <button id="odhlasitSaButton" class="btn btn-primary" style="display: none;">Odhlásiť sa</button>
+                            <a href="{{ $backButtonLink }}" class="btn btn-primary">Späť</a>
+
+                            <form method="POST" action="{{ route('events.register', ['id' => $event->id, 'name' => $event->event_name]) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-primary" id='registerButton'>Registrovať sa</button>
+                            </form>
+
+                            <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-primary" id='odhlasitSaButton'>Odhlásiť sa</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -40,7 +49,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         function updateButtonVisibility() {
             var registerButton = document.getElementById('registerButton');
             var odhlasitSaButton = document.getElementById('odhlasitSaButton');
@@ -57,22 +66,13 @@
             }
         }
 
+        updateButtonVisibility();
 
         document.getElementById('registerButton').addEventListener('click', function() {
-            if (isLoggedIn()) {
-                alert('Boli ste úspešne zaregistrovaný na toto podujatie.\n');
-            } else {
-                alert('Musíte mať vytvorený profil a byť prihlásený, aby ste sa mohli zaregistrovať na toto podujatie.');
-            }
-
             updateButtonVisibility();
         });
 
         document.getElementById('odhlasitSaButton').addEventListener('click', function() {
-            if (isLoggedIn() && isRegisteredToTheEvent()) {
-                alert('Boli ste úspešne odhlásený z tohto podujatia.\n');
-            }
-
             updateButtonVisibility();
         });
 
@@ -89,6 +89,6 @@
             // Replace this function with your actual check
             return true; // Replace with your actual check
         }
-    </script>
+    </script> -->
 @endsection
 

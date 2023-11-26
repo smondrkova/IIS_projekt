@@ -28,7 +28,6 @@ class UserFactory extends Factory
             'phone_number' => $this->faker->phoneNumber(),
             'password' => $this->faker->password(),
             'remember_token' => Str::random(10),
-            'signed_in_events' => json_encode($eventIds),
         ];
     }
 }

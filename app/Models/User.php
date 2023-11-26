@@ -57,4 +57,14 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var string
      */
     protected $primaryKey = 'id';
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class)->withTimestamps();;
+    }
+
+    public function isRegisteredToTheEvent($eventId)
+    {
+        return $this->events->contains($eventId);
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 use Hash;
+use Str;
 
 class AuthController extends Controller
 {
@@ -46,7 +47,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email,',
             'password' => 'required|string|min:8|confirmed',
             'phone_number' => 'nullable|string',
-            'remember_token' => str_random(10),
+            'remember_token' => Str::random(10),
         ], [
             'email.unique' => 'Tento email už existuje, zvoľte iný alebo sa prihláste.',
             'password.min' => 'Heslo musí mať aspoň 8 znakov.',
