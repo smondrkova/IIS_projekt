@@ -13,6 +13,9 @@
         .btn{
             @apply rounded-md px-2 py-1 text-center font-medium shadow-sm ring-1 text-slate-700 ring-slate-700/10 hover:bg-slate-50
         }
+        .btn-not {
+            @apply rounded-md px-2 py-1 text-center font-medium shadow-sm ring-1 text-slate-700 ring-slate-700/10 hover:bg-slate-50 bg-gray-800 text-white
+        }
         .link{
             @apply font-medium text-gray-700 underline decoration-pink-500
         }
@@ -36,7 +39,7 @@
     <div class="top-bar bg-gray-800 text-white py-2 px-4 mb-4 h-16 flex items-center justify-between">
         <span class="text-lg font-semibold">UdaloMánia</span>
 
-        <div class="flex space-x-4 float-right text-lg">
+        <div class="flex space-x-6 float-right text-lg">
             <a href="{{ route('events.index') }}" class="text-white">Domov</a>
             <a href="{{ route('events.search_categories') }}" class="text-white">Prehľadávať</a>
             @auth
@@ -44,12 +47,12 @@
                 <a href="{{ route('user.show', auth()->user()->id) }}" class="text-white">Profil</a>
 
                 {{-- Show the "Approve" button for moderators and admins --}}
-                @if(auth()->user()->id == 1 || auth()->user()->id == 2)
-                    <a href="{{ route('approve') }}" class="text-white">Schváliť</a>
+                @if(auth()->user()->id == 1 || auth()->user()->id == 2 || auth()->user()->id == 3 || auth()->user()->id == 4)
+                    <a href="{{ route('approve') }}" class="text-white">Správa žiadosti</a>
 
                     {{-- Show the "Manage Users" button for admins --}}
                     @if(auth()->user()->id == 1)
-                        <a href="{{ route('manage_users') }}" class="text-white">Spravovať užívateľov</a>
+                        <a href="{{ route('manage_users') }}" class="text-white">Správa užívateľov</a>
                     @endif
                 @endif
 
@@ -66,7 +69,7 @@
     <div x-data="{flash: true}">
         @if(session()->has('success'))
         <div x-show="flash"
-            class="relative mb-10 rounded border border-green-400 bg-green-100 px-4 py-3 text-lg text-green-700"
+            class="relative ml-20 mr-20 mb-10 rounded border border-green-400 bg-green-100 px-4 py-3 text-lg text-green-700"
         role="alert">
             <strong class="font-bold">Úspech!</strong>
             <div>
@@ -85,7 +88,7 @@
 
         @if(session()->has('error'))
             <div x-show="flash"
-                class="relative mb-10 rounded border border-red-400 bg-red-100 px-4 py-3 text-lg text-red-700"
+                class="relative mb-10 ml-20 mr-20 rounded border border-red-400 bg-red-100 px-4 py-3 text-lg text-red-700"
                 role="alert">
                 <strong class="font-bold">Chyba!</strong>
                 <div>

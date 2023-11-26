@@ -32,6 +32,8 @@ class EventController extends Controller
             $backButtonLink = route('events.search_categories');
         } elseif (preg_match('/\/user\/\d+/', $referrer)) {
             $backButtonLink = route('user.show', ['id' => Auth::user()->id]);
+        } elseif (strpos($referrer, 'approve')) {
+            $backButtonLink = route('approve');
         }
 
         $event = Event::findOrFail($id); // Fetch the event by its ID
@@ -127,7 +129,7 @@ class EventController extends Controller
             Event::create($validatedData);
 
             // Redirect back or wherever you want after the event is created
-            return redirect()->route('events.index')->with('success', 'Udalosť úspešne vytvorená!');
+            return redirect()->route('events.index')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
         }
 
     public function store_category(Request $request)
@@ -143,7 +145,7 @@ class EventController extends Controller
         Category::create($validatedData);
 
         // Redirect back or wherever you want after the category is created
-        return redirect()->route('events.index')->with('success', 'Katogória vytvorená úspešne!');
+        return redirect()->route('events.index')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
     }
 
     public function store_place(Request $request)
@@ -171,7 +173,7 @@ class EventController extends Controller
         Place::create($validatedData);
 
         // Redirect back or wherever you want after the place is created
-        return redirect()->route('events.index')->with('success', 'Miesto udalosti vytvorené úspešne!');
+        return redirect()->route('events.index')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
     }
 
     public function registerOnEvent(Request $request, $eventId, $name)

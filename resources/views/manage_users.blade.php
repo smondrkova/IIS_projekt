@@ -11,8 +11,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Tabuľka používateľov:</h2>
+    <div class="container p-8 pl-20">
+        <h2 class="text-2xl font-bold mb-4">Tabuľka používateľov:</h2>
+
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                padding: 15px;
+                text-align: left;
+                border: 1px solid #ddd; 
+            }
+
+            th {
+                background-color: #f2f2f2; 
+            }
+        </style>
+
         <table class="table">
             <thead>
                 <tr>
@@ -21,7 +39,7 @@
                     <th>Priezvisko</th>
                     <th>Email</th>
                     <th>Telefónne číslo</th>
-                    <th>Akcia</th>
+                    <th class="text-center align-middle">Akcia</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,11 +50,11 @@
                         <td>{{ $user->surname }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone_number }}</td>
-                        <td>
+                        <td class="text-center align-middle">
                             <form action="{{ route('delete_user', $user->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Delete</button>
+                                <button class="btn" type="submit" onclick="return confirm('Ste si istý, že chcete vymazať daného užívateľa?')">Vymazať</button>
                             </form>
                         </td>
                     </tr>

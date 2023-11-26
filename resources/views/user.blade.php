@@ -72,7 +72,7 @@
                                 <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn">Odregistrovať sa</button>
+                                    <button type="submit" class="btn-not">Odregistrovať sa</button>
                                 </form>
                             </div>
                         @endforeach
@@ -80,7 +80,7 @@
                 @endforeach
             </div>
         @else
-            <p>Aktuálne nie ste zaregistrovaný na žiadnej udalosti.</p>
+            <p>Aktuálne nie ste zaregistrovaný na žiadne udalosti.</p>
         @endif
 
     </div>

@@ -26,7 +26,7 @@ class UserController extends Controller
     private function organizeEventsByDate($events)
     {
         return $events->sortBy('date_of_event')->groupBy(function($event) {
-            return Carbon::parse($event->date_of_event)->format('Y-m-d');
+            return Carbon::parse($event->date_of_event)->format('d.m.Y');
         });
     }
 
@@ -93,7 +93,7 @@ class UserController extends Controller
         $event->approved = true;
         $event->save();
 
-        return redirect()->route('approve')->with('success', 'Event bol úspešne schválený.');
+        return redirect()->route('approve')->with('success', 'Udalosť bola úspešne schválená.');
     }
 
     public function deleteEvent($id)
@@ -101,7 +101,7 @@ class UserController extends Controller
         $event = Event::find($id);
         $event->delete();
 
-        return redirect()->route('approve')->with('success', 'Event bol úspešne zmazaný.');
+        return redirect()->route('approve')->with('success', 'Udalosť bol úspešne zmazaná.');
     }
 
     public function approvePlace($id)
@@ -150,9 +150,9 @@ class UserController extends Controller
         if ($user)
         {
             $user->delete();
-            return redirect()->route('manage_users')->with('success', 'User deleted successfully!');
+            return redirect()->route('manage_users')->with('success', 'Užívateľ bol úspešne vymazaný!');
         } else {
-            return redirect()->route('manage_users')->with('error', 'User not found!');
+            return redirect()->route('manage_users')->with('error', 'Používateľa sa nepodarilo nájsť!');
         }
     }
 
