@@ -14,7 +14,11 @@
     <div class="container">
         <div class="grid-container">
             <div class="grid-item image">
-                <img src="{{ asset('placeholders/placeholder.jpg') }}" class="img-fluid" alt="{{ $event->event_name }}">
+                @if($event->photo)
+                    <img src="{{ asset('storage/event_photos/'. $event->photo) }}"class="img-fluid" alt="{{ $event->event_name }}">
+                @else
+                    <img src="{{ asset('placeholders/placeholder.jpg') }}" class="img-fluid" alt="{{ $event->event_name }}">
+                @endif
             </div>
             <div class="grid-item text">
                 <div class="card">

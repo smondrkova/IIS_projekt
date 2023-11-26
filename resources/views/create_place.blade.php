@@ -14,7 +14,7 @@
     <div class="container p-8 pl-20">
         <h2 class="text-2xl font-bold mb-4">Vytvoriť nové miesto konania</h2>
 
-        <form action="{{ route('events.store_place') }}" method="POST">
+        <form action="{{ route('events.store_place') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group mb-4">
@@ -41,6 +41,9 @@
             <div class="form-group mb-4">
                 <label for="photo">Fotografia miesta</label>
                 <input type="file" name="photo" id="photo" class="form-control-file">
+                @error('photo')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary">Vytvoriť miesto</button>
