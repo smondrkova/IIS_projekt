@@ -42,10 +42,8 @@ class EventController extends Controller
         
         if (strpos($referrer, 'events')) {
             $backButtonLink = route('events.index');
-        } elseif (preg_match('/search_categories\/(\d+)-(.+)/', $referrer, $matches)) {
-            $categoryId = $matches[1];
-            $categoryName = $matches[2];
-            $backButtonLink = route('events.search_categories', ['id' => $categoryId, 'name' => $categoryName]);
+        } else if (strpos($referrer, 'search_categories')) {
+            $backButtonLink = route('events.search_categories');
         } elseif (preg_match('/\/user\/\d+/', $referrer)) {
             $backButtonLink = route('user.show', ['id' => Auth::user()->id]);
         } elseif (strpos($referrer, 'approve')) {
