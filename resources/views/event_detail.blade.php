@@ -45,7 +45,7 @@
                                 <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-primary" id='odhlasitSaButton'>Odregistrovať sa</button>
+                                    <button type="submit" class="btn-not btn-primary" id='odhlasitSaButton'>Odregistrovať sa</button>
                                 </form>
                             @else
                                 <form method="POST" action="{{ route('events.register', ['id' => $event->id, 'name' => $event->event_name]) }}">
