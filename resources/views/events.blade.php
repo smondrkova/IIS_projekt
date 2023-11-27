@@ -13,7 +13,7 @@
         <div class="flex flex-wrap justify-center gap-10">
             @foreach ($events as $event)
                 <div class="card my-4">
-                    <img src="{{ $event->photo ? asset('storage/event_photos/'. $event->photo) : asset('placeholders/placeholder.jpg') }}" class="w-full" alt="{{ $event->event_name }}" style="width: 450px;">
+                    <img src="{{ $event->photo ? asset('storage/event_photos/'. $event->photo) : asset('placeholders/placeholder.jpg') }}" class="w-full" alt="{{ $event->event_name }}" style="width: 450px; height: 250px;">
                     
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2">{{ $event->event_name }}</div>

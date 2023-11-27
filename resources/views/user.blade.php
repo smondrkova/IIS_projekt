@@ -42,6 +42,11 @@
                         </form>
 
                         <a href="{{ route('events.edit_event', ['id' => $event->id, 'name' => $event->event_name]) }}" class="btn btn-primary">Upraviť</a>
+                        @if($event->approved == 0)
+                            <p>Čaká na schválenie</p>
+                        @else
+                            <p>Zverejnená</p>
+                        @endif
                     </div>
                 @endforeach
             </div>

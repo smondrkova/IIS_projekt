@@ -15,10 +15,10 @@
         <div class="grid-container">
             <div class="grid-item image">
             @if($place->photo)
-                    <img src="{{ asset('storage/place_photos/'. $place->photo) }}"class="img-fluid" alt="{{ $place->name }}">
+                    <img src="{{ asset('storage/place_photos/'. $place->photo) }}" alt="{{ $place->name }}">
                 @else
-                    <img src="{{ asset('placeholders/placeholder.jpg') }}" class="img-fluid" alt="{{ $place->name }}">
-                @endif
+                    <img src="{{ asset('placeholders/placeholder.jpg') }}" alt="{{ $place->name }}">
+            @endif
             </div>
             <div class="grid-item text">
                 <div class="card">
@@ -31,7 +31,7 @@
                         <br>
                         <a href="{{ url()->previous() }}" class="btn btn-primary">Späť</a>
                         @if(auth()->user()->id == 1 || auth()->user()->id == 2)
-                            <form action="{{ route('delete_place_from_catalog', $place->id) }}" method="POST">
+                            <form action="{{ route('delete_place', $place->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn-not mt-2" type="submit" onclick="return confirm('Ste si istý, že chcete vymazať toto miesto?')">Vymazať</button>
