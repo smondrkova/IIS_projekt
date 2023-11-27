@@ -149,7 +149,7 @@ class EventController extends Controller
             Event::create($validatedData);
 
             // Redirect back or wherever you want after the event is created
-            return redirect()->route('events.index')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
+            return redirect()->route('events.create_request')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
         }
 
     public function store_category(Request $request)
@@ -165,7 +165,7 @@ class EventController extends Controller
         Category::create($validatedData);
 
         // Redirect back or wherever you want after the category is created
-        return redirect()->route('events.index')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
+        return redirect()->route('events.create_request')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
     }
 
     public function store_place(Request $request)
@@ -193,7 +193,7 @@ class EventController extends Controller
         Place::create($validatedData);
 
         // Redirect back or wherever you want after the place is created
-        return redirect()->route('events.index')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
+        return redirect()->route('events.create_request')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
     }
 
     public function registerOnEvent(Request $request, $eventId, $name)
@@ -205,6 +205,11 @@ class EventController extends Controller
         }
 
         $event = Event::find($eventId);
+
+        if ($event->users->count() == $event->capacity){
+            return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('error', 'Kapacita udalosti je už plne obsadená. Ospravedlňujeme sa.');
+        }
+        
         $event->users()->attach($user->id);
 
         return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('success', 'Boli ste úspešne registrovaný na túto udalosť.');

@@ -26,7 +26,7 @@
                         <h1 class="text-4xl font-bold">{{ $event->event_name }}</h1>
                         <br>
                         <p class="card-text">Dátum: {{ \Carbon\Carbon::parse($event->date_of_event)->format('d.m.Y') }}</p>
-                        <p class="card-text">Čas: {{ $event->time_of_event }}</p>
+                        <p class="card-text">Čas: {{ \Carbon\Carbon::parse($event->time_of_event)->format('H:i') }}</p>
                         <a href="{{ route('events.places', ['id' => $event->place->id, 'name' => $event->place->name]) }}" class="links">Miesto podujatia: {{ $event->place->name }}</a>
                         <p class="card-text">Vstupné: {{ $event->entry_fee ? '$'.$event->entry_fee : 'Free' }}</p>
                         <p class="card-text">Kategória: {{ $event->categories->name }}</p>

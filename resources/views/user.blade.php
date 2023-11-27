@@ -30,22 +30,22 @@
         @if($user->organized_events->isNotEmpty())
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 @foreach($user->organized_events as $event)
-                    <div style="display: flex; gap: 15px; align-items: center;border: 3px solid #608da2; width:600px; border-radius: 5px;" class="mb-4 pl-10 p-2">
-                        <a href="{{ route('events.show', ['id' => $event->id, 'name' => $event->event_name]) }}" style="width: 200px;" class="font-bold">{{ $event->event_name }}</a>
+                    <div style="display: flex; gap: 15px; align-items: center;border: 3px solid #608da2; width:650px; border-radius: 5px;" class="mb-4 pl-5  p-2">
+                        <a href="{{ route('events.show', ['id' => $event->id, 'name' => $event->event_name]) }}" style="width: 300px;" class="font-bold">{{ $event->event_name }}</a>
                         <span>{{ \Carbon\Carbon::parse($event->date_of_event)->format('d.m.Y') }}</span>
-                        <span>{{ $event->time_of_event }}</span>
+                        <span>{{ \Carbon\Carbon::parse($event->time_of_event)->format('H:i') }}</span>
                         
                         <form method="POST" action="{{ route('delete_event_from_catalog', ['id' => $event->id, 'name' => $event->event_name]) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-not" onclick="return confirm('Ste si istý, že chcete vymazať danú kategóriu?')">Vymazať</button>
+                            <button type="submit" class="btn-not" onclick="return confirm('Ste si istý, že chcete vymazať danú udalosť?')">Vymazať</button>
                         </form>
 
                         <a href="{{ route('events.edit_event', ['id' => $event->id, 'name' => $event->event_name]) }}" class="btn btn-primary">Upraviť</a>
                         @if($event->approved == 0)
                             <p>Čaká na schválenie</p>
                         @else
-                            <p>Zverejnená</p>
+                            <strong>Zverejnená</strong>
                         @endif
                     </div>
                 @endforeach
@@ -94,10 +94,10 @@
                         </h2>
 
                         @foreach($groupedEvents[$group] as $event)
-                            <div style="display: flex; gap: 15px; align-items: center;border: 3px solid #0c151b; width:600px; border-radius: 5px;" class="mb-4 pl-10 p-2">
-                                <a href="{{ route('events.show', ['id' => $event->id, 'name' => $event->event_name]) }}" style="width: 200px;" class="font-bold">{{ $event->event_name }}</a>
+                            <div style="display: flex; gap: 15px; align-items: center;border: 3px solid #0c151b; width:650px; border-radius: 5px;" class="mb-4 pl-5 p-2">
+                                <a href="{{ route('events.show', ['id' => $event->id, 'name' => $event->event_name]) }}" style="width: 320px;" class="font-bold">{{ $event->event_name }}</a>
                                 <span>{{ \Carbon\Carbon::parse($event->date_of_event)->format('d.m.Y') }}</span>
-                                <span>{{ $event->time_of_event }}</span>
+                                <span>{{ \Carbon\Carbon::parse($event->time_of_event)->format('H:i') }}</span>
                                 
                                 <form method="POST" action="{{ route('events.unregister', ['id' => $event->id, 'name' => $event->event_name]) }}">
                                     @csrf
