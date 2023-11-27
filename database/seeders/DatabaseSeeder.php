@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Storage;
 
 class AdminSeeder extends Seeder
 {
@@ -214,11 +215,16 @@ class Place1Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place1.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+
         Place::create([
             'id' => 1,
-            'name' => 'Green Oasis Park',
-            'address' => '123 Forest Grove Avenue, Cityville, Country',
-            'description' => 'Green Oasis Park is a serene nature retreat nestled in the heart of Cityville.',
+            'name' => 'Park Zelený háj',
+            'address' => 'Parková 12, Košice, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Raj pre lásku k prírode, Park Zelený háj vás privíta svojou nádhernou zeleňou a jazierkami.',
         ]);
     }
 }
@@ -227,11 +233,16 @@ class Place2Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place2.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+
         Place::create([
             'id' => 2,
-            'name' => 'Stellar Coffee House',
-            'address' => '456 Milky Way Street, Urbanscape, Country',
-            'description' => 'Stellar Coffee House is a trendy urban cafe where locals gather to savor artisanal coffees and indulge in delicious pastries.',
+            'name' => 'Hviezdná kaviareň',
+            'address' => 'Kávová 10, Bratislava, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Hviezdná kaviareň je miestom, kde sa stretáva vášeň pre kávu a príjemné prostredie. Očarujte svoje chuťové poháriky najlepšími kávovými delikatesami v meste.',
         ]);
     }
 }
@@ -240,11 +251,16 @@ class Place3Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place3.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+
         Place::create([
             'id' => 3,
-            'name' => 'Harbor View Restaurant',
-            'address' => '789 Oceanfront Drive, Coastal City, Country',
-            'description' => 'Harbor View Restaurant offers breathtaking panoramic views of the ocean while serving exquisite seafood dishes.',
+            'name' => 'Reštaurácia u prístavu',
+            'address' => 'Pobrežná 67, Bratislava, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'S romantickým výhľadom na prístav je naša reštaurácia miestom pre tých, čo milujú kulinárske zážitky a atmosféru s pohľadom na trblietkajúcu hladinu.',
         ]);
     }
 }
@@ -253,11 +269,16 @@ class Place4Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place4.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+
         Place::create([
             'id' => 4,
-            'name' => 'Mountain Retreat Lodge',
-            'address' => '101 Summit Trail, Alpine Village, Country',
-            'description' => 'Nestled in the majestic Alpine Village, Mountain Retreat Lodge provides a cozy escape for nature enthusiasts.',
+            'name' => 'Penzión Horský úkryt',
+            'address' => 'Vrcholová 2, Poprad, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Vitajte v útulnom penzióne Horský úkryt, kde príroda a pohodlie idú ruka v ruke. Ideálné pre tých, čo hľadajú oddych v horskom prostredí.',
         ]);
     }
 }
@@ -266,11 +287,16 @@ class Place5Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place5.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+
         Place::create([
             'id' => 5,
-            'name' => 'TechHub Innovations Center',
-            'address' => '202 Innovation Avenue, Techropolis, Country',
-            'description' => 'TechHub is a cutting-edge innovation center where tech enthusiasts and entrepreneurs collaborate on groundbreaking projects.',
+            'name' => 'Inovačné centrum TechHub',
+            'address' => 'Technické námestie 2, Košice, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'TechHub je epicentrom inovácií a technologického pokroku. Spoľahnite sa na stimulujúce prostredie pre výskum a rozvoj najnovších technologických trendov.',
         ]);
     }
 }
@@ -279,11 +305,16 @@ class Place6Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place6.jpeg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+
         Place::create([
             'id' => 6,
-            'name' => 'Tranquil Spa & Wellness',
-            'address' => '303 Serenity Lane, Zen City, Country',
-            'description' => 'Tranquil Spa & Wellness is a haven for relaxation and rejuvenation.',
+            'name' => 'Spa a Wellness Kľud',
+            'address' => 'Pokojná 4, Piešťany, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Spa a Wellness Kľud je útočiskom pre relaxáciu a obnovu tela aj mysle. Ponúkame širokú škálu wellness služieb pre dokonalý oddych.',
         ]);
     }
 }
@@ -292,11 +323,16 @@ class Place7Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place7.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 7,
-            'name' => 'Galaxy Mall',
-            'address' => '404 Starlight Boulevard, Metropolis, Country',
-            'description' => 'Galaxy Mall is a bustling shopping destination with a diverse range of shops and entertainment options.',
+            'name' => 'OC Galaxy',
+            'address' => 'Hviezdna 34, Bratislava, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'OC Galaxy - Mekka pre nakupovanie, zábavu a gastronomické potešenie. Tu sa stretáva svetový spôsob života s moderným štýlom nakupovania.',
         ]);
     }
 }
@@ -305,11 +341,16 @@ class Place8Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place8.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 8,
-            'name' => 'Historic District Square',
-            'address' => '505 Heritage Street, Old Town, Country',
-            'description' => 'The Historic District Square is a charming area that preserves the architectural heritage of Old Town.',
+            'name' => 'Historické námestie',
+            'address' => 'Ulica odkazu 1, Banská Bystrica, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Historické námestie je pokladnicou minulosti s krásnymi historickými budovami a úzkymi uličkami. Ideálne pre tých čo túžia po kúsku histórie.',
         ]);
     }
 }
@@ -318,11 +359,16 @@ class Place9Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place9.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 9,
-            'name' => 'Adventure Peak Campground',
-            'address' => '606 Summit Camp Road, Wilderness Valley, Country',
-            'description' => 'Adventure Peak Campground is an outdoor enthusiast\'s paradise.',
+            'name' => 'Camp Dobrodrúžstvo',
+            'address' => 'Dobrodružná 38, Liptovský Mikuláš, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Camp Dobrodrúžstvo je výchozím bodom pre dobrodružstvo v prírode. Kým si budete užívať kempovanie, objavujte okolitú prírodu a adrenalínové aktivity.',
         ]);
     }
 }
@@ -331,11 +377,16 @@ class Place10Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place10.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 10,
-            'name' => 'Skyline Observatory',
-            'address' => '707 Celestial Heights, Skyline City, Country',
-            'description' => 'Skyline Observatory offers a stunning 360-degree view of the cityscape.',
+            'name' => 'Observatórium Skyline',
+            'address' => 'Hviezdna 5, Košice, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'S výhľadom na mesto, observatórium Skyline ponúka úchvatné pohľady na nočné nebo. Ideálne pre všetkých čo milujú hviezdne pozorovanie.',
         ]);
     }
 }
@@ -344,11 +395,16 @@ class Place11Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place11.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 11,
-            'name' => 'Fusion Flavors Restaurant',
-            'address' => '808 Culinary Street, Global Plaza, Country',
-            'description' => 'Fusion Flavors Restaurant is a culinary gem that brings together diverse global cuisines.',
+            'name' => 'Reštaurácia Spojená chuť',
+            'address' => 'Dunajská 2, Bratislava, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Restaurace Spojená chuť spája chute z celého sveta v jedinečných kulinárskych kompozíciách.',
         ]);
     }
 }
@@ -357,11 +413,16 @@ class Place12Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place12.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 12,
-            'name' => 'Harmony Bookstore & Cafe',
-            'address' => '909 Literary Lane, Bookish Borough, Country',
-            'description' => 'Harmony Bookstore & Cafe is a haven for book lovers.',
+            'name' => 'Kníhkupéctvo & Kaviareň Harmony',
+            'address' => 'Literárna 7, Bratislava, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Kníhkupéctvo & Kaviareň Harmony je útulné miesto pre knihomolov a milovníkov kávy. Čítajte obľúbené knihy pri šálke kvalitnej kávy.',
         ]);
     }
 }
@@ -370,11 +431,16 @@ class Place13Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place13.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 13,
-            'name' => 'Urban Art Gallery',
-            'address' => '1010 Creative Avenue, Artsy Town, Country',
-            'description' => 'Urban Art Gallery showcases the works of local and international artists.',
+            'name' => 'Mestská galéria umenia',
+            'address' => 'Kultúrna 2, Košice, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Mestská galéria umenia je priestor pre kreatívnu sebarealizáciu a zážitok z moderného umenia. Ponúka výstavy a podporuje miestnych umelcov.',
         ]);
     }
 }
@@ -383,11 +449,16 @@ class Place14Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place14.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 14,
-            'name' => 'Lakeside Retreat Resort',
-            'address' => '1111 Serene Shore Drive, Lakeside Haven, Country',
-            'description' => 'Lakeside Retreat Resort offers a luxurious escape with waterfront views, spa facilities, and gourmet dining.',
+            'name' => 'Rekreačný resort na Brehu Jazera',
+            'address' => 'Pobrežná 1, Štrbské Pleso, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Rekreačný resort na Brehu Jazera je miesto pre oddych a relaxáciu pri brehu jazera. Užívajte si nádherný výhľad a komfort našich ubytovacích zariadení.',
         ]);
     }
 }
@@ -396,11 +467,16 @@ class Place15Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/place15.jpg';
+        Storage::disk('public')->put('place_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Place::create([
             'id' => 15,
-            'name' => 'Jazz Junction Club',
-            'address' => '1212 Rhythm Street, Jazzville, Country',
-            'description' => 'Jazz Junction Club is a vibrant music venue where live jazz performances take center stage.',
+            'name' => 'Jazzový klub',
+            'address' => 'Hlavná 1, Žilina, Slovensko',
+            'photo' => basename($photo),
+            'description' => 'Náš Jazzový klub je živý klub, kde sa stretáva komunita jazzových nadšencov. Každý deň je tu plný hudobnej energie a vášne pre jazz.',
         ]);
     }
 }
@@ -409,15 +485,20 @@ class Event1Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event1.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 1,
-            'event_name' => 'Green Oasis Park Cleanup',
+            'event_name' => 'Upratovanie parku Zelený háj',
             'date_of_event' => '2024-05-01',
             'time_of_event' => '10:00:00',
             'place_of_event' => 1,
             'entry_fee' => 0,
             'category' => 9,
-            'description' => 'Join us for a day of cleaning up Green Oasis Park. We will be picking up trash and planting trees.',
+            'description' => 'Pridajte sa k nám na upratovaní parku Zelený háj. Budeme zbierať odpadky a sadiť stromy.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -427,15 +508,20 @@ class Event2Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event2.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 2,
-            'event_name' => 'Poetry Night & Espresso Delights',
+            'event_name' => 'Noc poézie a kávových delikates',
             'date_of_event' => '2024-06-10',
             'time_of_event' => '20:00:00',
             'place_of_event' => 2,
             'entry_fee' => 8,
             'category' => 4,
-            'description' => 'An evening of poetic expressions and aromatic espresso.',
+            'description' => 'Večer poetických prejavov a aromatického espressa.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -445,15 +531,20 @@ class Event3Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event3.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 3,
-            'event_name' => 'Seafood Extravaganza',
+            'event_name' => 'Fantázia morských plodov',
             'date_of_event' => '2024-07-15',
             'time_of_event' => '19:00:00',
             'place_of_event' => 3,
             'entry_fee' => 50,
             'category' => 6,
-            'description' => 'Delight your taste buds with our Seafood Extravaganza featuring the freshest catches and a stunning view of the harbor.',
+            'description' => 'Oslnite svoje chuťové buňky našimi najčerstvejšími úlovkami a ohromujúcim výhľadom na prístav.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -463,15 +554,20 @@ class Event4Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event4.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 4,
-            'event_name' => 'Stargazing Bonfire Night',
+            'event_name' => 'Sledovanie hviezd pri ohnisku',
             'date_of_event' => '2024-08-05',
             'time_of_event' => '21:00:00',
             'place_of_event' => 4,
             'entry_fee' => 0,
             'category' => 10,
-            'description' => 'Join us for a magical night under the stars. Enjoy a bonfire, hot cocoa, and an expert-led stargazing session.',
+            'description' => 'Pridajte sa k nám na kúzelnú noc pod hviezdami. Užite si ohnisko, horúcu čokoládu a odborné sledovanie hviezd.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -481,15 +577,20 @@ class Event5Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event5.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 5,
-            'event_name' => 'Tech Symposium 2023',
+            'event_name' => 'TechCon 2023',
             'date_of_event' => '2024-09-01',
             'time_of_event' => '10:00:00',
             'place_of_event' => 5,
             'entry_fee' => 25,
             'category' => 8,
-            'description' => 'Explore the latest in technology and innovation at TechHub\'s annual symposium. Engage with industry leaders and visionaries.',
+            'description' => 'Preskúmajte najnovšie technológie a inovácie na tohtoročnom TechCone. Spojte sa s osobnosťami a vizionármi technického odvetvia.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -499,15 +600,20 @@ class Event6Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event6.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 6,
-            'event_name' => 'Mindfulness Meditation Workshop',
+            'event_name' => 'Workshop meditácie',
             'date_of_event' => '2024-10-12',
             'time_of_event' => '15:30:00',
             'place_of_event' => 6,
             'entry_fee' => 15,
             'category' => 9,
-            'description' => 'Immerse yourself in a day of serenity with our mindfulness meditation workshop. Rejuvenate your mind and body.',
+            'description' => 'Ponorte sa do pokoja s naším workshopom venujúcim sa meditácii. Oživte si myseľ a telo.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -517,15 +623,20 @@ class Event7Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event7.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 7,
-            'event_name' => 'Midnight Madness Sale',
+            'event_name' => 'Nočná šialenosť v OC Galaxy',
             'date_of_event' => '2023-12-20',
             'time_of_event' => '0:00:00',
             'place_of_event' => 7,
             'entry_fee' => 0,
             'category' => 3,
-            'description' => 'Dive into a shopping frenzy with exclusive discounts and deals at our Midnight Madness Sale.',
+            'description' => 'Ponorte sa do šialenstva nakupovania s exkluzívnymi zľavami a ponukami našich nočných šialenstiev. Nakupujte, dokým neodpadnete!',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -535,15 +646,20 @@ class Event8Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event8.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 8,
-            'event_name' => 'Historical Walking Tour',
+            'event_name' => 'Historická túra',
             'date_of_event' => '2023-12-05',
             'time_of_event' => '14:00:00',
             'place_of_event' => 8,
             'entry_fee' => 10,
             'category' => 4,
-            'description' => 'Step back in time with our guided historical walking tour.',
+            'description' => 'Posuňte sa späť v čase s našou prehliadkovou historickou túrou. Preskúmajte bohaté dedičstvo oblasti prostredníctvom jej historických ulíc.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -553,15 +669,20 @@ class Event9Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event9.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 9,
-            'event_name' => 'Outdoor Movie Night',
+            'event_name' => 'Vonkajšia filmová noc',
             'date_of_event' => '2024-01-18',
             'time_of_event' => '19:30:00',
             'place_of_event' => 9,
             'entry_fee' => 10,
             'category' => 4,
-            'description' => 'Cozy up under the night sky for an outdoor screening of a classic adventure film.',
+            'description' => 'Uložte sa pod nočnú oblohu na vonkajšie premietanie klasického dobrodružného filmu. Prineste si deky a popcorn!',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -571,15 +692,20 @@ class Event10Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event10.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 10,
-            'event_name' => 'Celestial Photography Workshop',
+            'event_name' => 'Workshop fotografie nočnej oblohy',
             'date_of_event' => '2024-02-22',
             'time_of_event' => '20:00:00',
             'place_of_event' => 10,
             'entry_fee' => 30,
             'category' => 8,
-            'description' => 'Capture the beauty of the night sky with our expert-led celestial photography workshop.',
+            'description' => 'Zachyťte krásu nočnej oblohy s našími odborníkmi na fotografovanie na observatóriu Skyline.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -589,15 +715,20 @@ class Event11Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event11.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 11,
-            'event_name' => 'Culinary Fusion Night',
+            'event_name' => 'Noc spojených chutí',
             'date_of_event' => '2024-03-15',
             'time_of_event' => '18:00:00',
             'place_of_event' => 11,
             'entry_fee' => 40,
             'category' => 6,
-            'description' => 'Indulge in a culinary journey with our special fusion menu, combining flavors from around the world.',
+            'description' => 'Ponorte sa do kulinárného zážitku s naším špeciálnym menu, ktoré kombinuje chute z celého sveta.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -607,15 +738,20 @@ class Event12Seeder extends Seeder
 {
     public function run()
     {
+        
+        $photo = 'placeholders/event12.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 12,
-            'event_name' => 'Author Meet & Greet',
+            'event_name' => 'Stretnutie s autormi',
             'date_of_event' => '2024-04-10',
             'time_of_event' => '16:00:00',
             'place_of_event' => 12,
             'entry_fee' => 0,
             'category' => 4,
-            'description' => 'Meet your favorite authors, get your books signed, and enjoy a cozy afternoon of literary conversations.',
+            'description' => 'Stretnite svojich obľúbených autorov, nechajte si podpísať knihy a užívajte si útulné popoludnie v kníhkupectve a kaviarni Harmony.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -625,15 +761,20 @@ class Event13Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event13.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 13,
-            'event_name' => 'Street Art Festival',
+            'event_name' => 'Festival pouličného umenia',
             'date_of_event' => '2024-05-05',
             'time_of_event' => '12:00:00',
             'place_of_event' => 13,
             'entry_fee' => 0,
             'category' => 4,
-            'description' => 'Immerse yourself in the vibrant world of street art with live demonstrations, graffiti displays, and interactive art installations.',
+            'description' => 'Ponorte sa do sveta živého pouličného umenia s živými predstaveniami.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -643,15 +784,20 @@ class Event14Seeder extends Seeder
 {
     public function run()
     {
+
+        $photo = 'placeholders/event14.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 14,
-            'event_name' => 'Lakeside Jazz Soiree',
+            'event_name' => 'Jazzova grilovačka pri jazere',
             'date_of_event' => '2024-06-20',
             'time_of_event' => '19:30:00',
             'place_of_event' => 14,
             'entry_fee' => 25,
             'category' => 2,
-            'description' => 'Enjoy an evening of lakeside jazz, fine dining, and breathtaking views.',
+            'description' => 'Užite si večer hudby, vynikajúceho jedla a ohromujúceho výhľadu v našom resorte.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
@@ -661,15 +807,20 @@ class Event15Seeder extends Seeder
 {
     public function run()
     {
+        
+        $photo = 'placeholders/event15.jpg';
+        Storage::disk('public')->put('event_photos/' . basename($photo), file_get_contents(public_path($photo)));
+    
         Event::create([
             'id' => 15,
-            'event_name' => 'Jazz Fusion Night',
+            'event_name' => 'Jazzový večer',
             'date_of_event' => '2024-07-10',
             'time_of_event' => '21:00:00',
             'place_of_event' => 15,
             'entry_fee' => 15,
             'category' => 2,
-            'description' => 'Immerse yourself in a fusion of jazz styles, from classic to contemporary.',
+            'description' => 'Užite si noc jazzovej hudby, od klasiky po súčasnosť.',
+            'photo' => basename($photo),
             'approved' => true,
         ]);
     }
