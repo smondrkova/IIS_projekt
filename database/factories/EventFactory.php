@@ -18,7 +18,8 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-        $userIds = $this->faker->unique()->randomElements(range(1, 10), 3);
+        $userIds = \App\Models\User::pluck('id')->toArray();
+        $randomUserId = $this->faker->randomElement($userIds);
         $placeId = Place::inRandomOrder()->value('id');
         $categoryId = Category::inRandomOrder()->value('id');
 
@@ -31,7 +32,9 @@ class EventFactory extends Factory
             'category' => $categoryId,
             'description' => $this->faker->text,
             'photo' => $this->faker->word,
+            'organiser' => $randomUserId,
             'approved' => $this->faker->boolean(true),
+            'capacity' => 0,
         ];
     }
 }

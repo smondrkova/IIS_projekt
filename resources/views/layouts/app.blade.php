@@ -48,12 +48,15 @@
 
                 {{-- Show the "Approve" button for moderators and admins --}}
                 @if(auth()->user()->id == 1 || auth()->user()->id == 2 || auth()->user()->id == 3 || auth()->user()->id == 4)
-                    <a href="{{ route('approve') }}" class="text-white">Správa žiadosti</a>
+                    <a href="{{ route('approve') }}" class="text-white">Správa žiadostí</a>
+                    <a href="{{ route('manage_categories') }}" class="text-white">Správa kategórii</a>
 
                     {{-- Show the "Manage Users" button for admins --}}
                     @if(auth()->user()->id == 1)
                         <a href="{{ route('manage_users') }}" class="text-white">Správa užívateľov</a>
                     @endif
+
+                    <a href="{{ route('manage_places') }}" class="text-white">Správa miest</a>
                 @endif
 
             @else

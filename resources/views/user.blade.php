@@ -26,7 +26,32 @@
             </form>
         </div>
         <br><br>
-        <h1 class="text-2xl font-bold mb-4">Moje udalosti</h1>
+        <h1 class="text-2xl font-bold mb-4">Moje vytvorené udalosti</h1>
+        @if($user->organized_events->isNotEmpty())
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                @foreach($user->organized_events as $event)
+                    <div style="display: flex; gap: 15px; align-items: center;border: 3px solid #608da2; width:600px; border-radius: 5px;" class="mb-4 pl-10 p-2">
+                        <a href="{{ route('events.show', ['id' => $event->id, 'name' => $event->event_name]) }}" style="width: 200px;" class="font-bold">{{ $event->event_name }}</a>
+                        <span>{{ \Carbon\Carbon::parse($event->date_of_event)->format('d.m.Y') }}</span>
+                        <span>{{ $event->time_of_event }}</span>
+                        
+                        <form method="POST" action="{{ route('delete_event_from_catalog', ['id' => $event->id, 'name' => $event->event_name]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-not" onclick="return confirm('Ste si istý, že chcete vymazať danú kategóriu?')">Vymazať</button>
+                        </form>
+
+                        <a href="{{ route('events.edit_event', ['id' => $event->id, 'name' => $event->event_name]) }}" class="btn btn-primary">Upraviť</a>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <p>Aktuálne neorganizujete žiadne udalosti.</p>
+        @endif
+
+        <br><br>
+
+        <h1 class="text-2xl font-bold mb-4">Moje registrované udalosti</h1>
 
         @if($user->events->isNotEmpty())
             <div style="display: flex; flex-direction: column; gap: 10px;">

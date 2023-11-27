@@ -30,6 +30,13 @@
                         <p class="card-text">{{ $place->description }}</p>
                         <br>
                         <a href="{{ url()->previous() }}" class="btn btn-primary">Späť</a>
+                        @if(auth()->user()->id == 1 || auth()->user()->id == 2)
+                            <form action="{{ route('delete_place_from_catalog', $place->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn-not mt-2" type="submit" onclick="return confirm('Ste si istý, že chcete vymazať toto miesto?')">Vymazať</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>

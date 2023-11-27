@@ -52,26 +52,26 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         // Update the user's attributes if the fields are not empty
-    if ($validatedData['name']) {
-        $user->name = $validatedData['name'];
-    }
+        if ($validatedData['name']) {
+            $user->name = $validatedData['name'];
+        }
 
-    if ($validatedData['surname']) {
-        $user->surname = $validatedData['surname'];
-    }
+        if ($validatedData['surname']) {
+            $user->surname = $validatedData['surname'];
+        }
 
-    if ($validatedData['email']) {
-        $user->email = $validatedData['email'];
-    }
+        if ($validatedData['email']) {
+            $user->email = $validatedData['email'];
+        }
 
-    if ($validatedData['phone_number']) {
-        $user->phone_number = $validatedData['phone_number'];
-    }
+        if ($validatedData['phone_number']) {
+            $user->phone_number = $validatedData['phone_number'];
+        }
 
-    // Update the password if provided
-    if ($validatedData['password']) {
-        $user->password = bcrypt($validatedData['password']);
-    }
+        // Update the password if provided
+        if ($validatedData['password']) {
+            $user->password = bcrypt($validatedData['password']);
+        }
 
         // Save the changes
         $user->save();
@@ -96,12 +96,19 @@ class UserController extends Controller
         return redirect()->route('approve')->with('success', 'Udalosť bola úspešne schválená.');
     }
 
-    public function deleteEvent($id)
+    public function deleteEventRequest($id)
     {
         $event = Event::find($id);
         $event->delete();
 
-        return redirect()->route('approve')->with('success', 'Udalosť bol úspešne zmazaná.');
+        return redirect()->route('approve')->with('success', 'Žiadosť bola úspešne zmazaná.');
+    }
+
+    public function deleteEvent($id){
+        $event = Event::find($id);
+        $event->delete();
+
+        return redirect()->route('user.show', ['id' => Auth::user()->id])->with('success', 'Udalosť bola úspešne zmazaná.');
     }
 
     public function approvePlace($id)
@@ -118,7 +125,14 @@ class UserController extends Controller
         $place = Place::find($id);
         $place->delete();
 
-        return redirect()->route('approve')->with('success', 'Miesto bolo úspešne zmazané.');
+        return redirect()->route('approve')->with('success', 'Žiadosť bola úspešne zmazané.');
+    }
+
+    public function deletePlaceFromCatalog($id){
+        $place = Place::find($id);
+        $place->delete();
+
+        return redirect()->route('manage_places')->with('success', 'Miesto bolo úspešne zmazané.');
     }
 
     public function approveCategory($id)
@@ -135,7 +149,14 @@ class UserController extends Controller
         $category = Category::find($id);
         $category->delete();
 
-        return redirect()->route('approve')->with('success', 'Kateória bola úspešne zmazaná.');
+        return redirect()->route('approve')->with('success', 'Žiadosť bola úspešne zmazaná.');
+    }
+
+    public function deleteCategoryFromCatalog($id){
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect()->route('manage_categories')->with('success', 'Kategória bola úspešne zmazaná.');
     }
 
     public function manageUsers()
@@ -154,6 +175,18 @@ class UserController extends Controller
         } else {
             return redirect()->route('manage_users')->with('error', 'Používateľa sa nepodarilo nájsť!');
         }
+    }
+
+    public function managePlaces()
+    {
+        $places = Place::all();
+        return view('manage_places', compact('places'));
+    }
+
+    public function manageCategories()
+    {
+        $categories = Category::all();
+        return view('manage_categories', compact('categories'));
     }
 
 }

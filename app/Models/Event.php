@@ -18,7 +18,9 @@ class Event extends Model
         'category',
         'description',
         'photo',
-        'approved'
+        'approved',
+        'organiser',
+        'capacity',
     ];
 
     /**
@@ -44,6 +46,11 @@ class Event extends Model
     public function users()
     {
         return $this->belongsToMany(User::class)->withTimestamps();;
+    }
+
+    public function organizer()
+    {
+        return $this->belongsTo(User::class, 'organiser');
     }
     
     // public function toggleComplete(){

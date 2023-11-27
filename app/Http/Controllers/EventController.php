@@ -110,6 +110,7 @@ class EventController extends Controller
                 'place_of_event' => 'required|exists:places,id',
                 'entry_fee' => 'nullable|numeric',
                 'category' => 'required|exists:categories,id',
+                'capacity' => 'required|numeric',
                 'description' => 'required|string',
                 'photo' => 'sometimes|nullable|image|mimes:jpeg,png,jpg',
             ], [
@@ -124,6 +125,9 @@ class EventController extends Controller
             } else {
                 $validatedData['photo'] = null;
             }
+
+            // Set the organiser to the currently logged in user
+            $validatedData['organiser'] = Auth::user()->id;
 
             // Create a new event using the validated data
             Event::create($validatedData);
@@ -198,5 +202,81 @@ class EventController extends Controller
         $event->users()->detach($user->id);
 
         return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('success', 'Boli ste úspešne odregistrovaný z tejto udalosti.');
+    }
+
+    public function edit_event($id)
+    {
+        $event = Event::findOrFail($id); 
+        $categories = Category::all();
+        $places = Place::all();
+
+        return view('edit_event', compact('event', 'categories', 'places'));
+    }
+
+    public function update_event(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'event_name' => 'required|string',
+            'date_of_event' => 'required|date|after_or_equal:today',
+            'time_of_event' => 'required',
+            'place_of_event' => 'required|exists:places,id',
+            'entry_fee' => 'nullable|numeric',
+            'category' => 'required|exists:categories,id',
+            'capacity' => 'required|numeric',
+            'description' => 'required|string',
+            'photo' => 'sometimes|nullable|image|mimes:jpeg,png,jpg',
+        ], [
+            'date_of_event.after_or_equal' => 'Dátum udalosti musí byť v budúcnosti.',
+        ]);
+
+
+        // Store the photo
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo')->store('event_photos', 'public');
+            $validatedData['photo'] = basename($imagePath);
+        } 
+
+        $event = Event::findOrFail($id);
+
+        if ($validatedData['event_name']) {
+            $event->event_name = $validatedData['event_name'];
+        }
+
+        if ($validatedData['date_of_event']) {
+            $event->date_of_event = $validatedData['date_of_event'];
+        }
+
+        if ($validatedData['time_of_event'] && $event->time_of_event != $validatedData['time_of_event']) {
+            // Check time only if the date is today
+            if ($validatedData['date_of_event'] == now()->format('d.m.Y') && strtotime($validatedData['time_of_event']) < strtotime(now()->format('H:i'))) {
+                return back()->withErrors(['time_of_event' => 'Čas udalosti musí byť v budúcnosti.']);
+            }
+            $event->time_of_event = $validatedData['time_of_event'];
+        }
+
+        if ($validatedData['place_of_event']) {
+            $event->place_of_event = $validatedData['place_of_event'];
+        }
+
+        if ($validatedData['entry_fee']) {
+            $event->entry_fee = $validatedData['entry_fee'];
+        }
+
+        if ($validatedData['category']) {
+            $event->category = $validatedData['category'];
+        }
+
+        if ($validatedData['capacity']) {
+            $event->capacity = $validatedData['capacity'];
+        }
+
+        if ($validatedData['description']) {
+            $event->description = $validatedData['description'];
+        }
+
+        $event->save();
+
+        // Redirect back or wherever you want after the event is created
+        return redirect()->route('user.show', ['id' => Auth::id()])->with('success', 'Udalosť bola úspešne upravená.');
     }
 }

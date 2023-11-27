@@ -30,6 +30,12 @@
                         <a href="{{ route('events.places', ['id' => $event->place->id, 'name' => $event->place->name]) }}" class="links">Miesto podujatia: {{ $event->place->name }}</a>
                         <p class="card-text">Vstupné: {{ $event->entry_fee ? '$'.$event->entry_fee : 'Free' }}</p>
                         <p class="card-text">Kategória: {{ $event->categories->name }}</p>
+                        <p class="card-text">Organizátor: {{ $event->organizer->name }} {{ $event->organizer->surname }}</p>
+                        @if($event->capacity == 0)
+                            <p class="card-text">Kapacita: Neobmedzená</p>
+                        @else
+                            <p class="card-text">Kapacita: {{ $event->users->count() }}/{{ $event->capacity }}</p>
+                        @endif
                         <br>
                         <p class="card-text">{{ $event->description }}</p>
                         <br>
