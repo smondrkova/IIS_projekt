@@ -64,14 +64,14 @@ class UserController extends Controller
             $user->email = $validatedData['email'];
         }
 
-    if (array_key_exists('phone_number', $validatedData)) {
-        $user->phone_number = $validatedData['phone_number'];
-    }
+        if (array_key_exists('phone_number', $validatedData)) {
+            $user->phone_number = $validatedData['phone_number'];
+        }
 
-    // Update the password if provided
-    if (!is_null($validatedData['password'])) {
-        $user->password = bcrypt($validatedData['password']);
-    }
+        // Update the password if provided
+        if (!is_null($validatedData['password'])) {
+            $user->password = bcrypt($validatedData['password']);
+        }
 
         // Save the changes
         $user->save();

@@ -515,6 +515,8 @@ class Event1Seeder extends Seeder
             'description' => 'Pridajte sa k nám na upratovaní parku Zelený háj. Budeme zbierať odpadky a sadiť stromy.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 6,
+            'capacity' => 50,
         ]);
     }
 }
@@ -538,6 +540,8 @@ class Event2Seeder extends Seeder
             'description' => 'Večer poetických prejavov a aromatického espressa.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 7,
+            'capacity' => 30,
         ]);
     }
 }
@@ -561,6 +565,8 @@ class Event3Seeder extends Seeder
             'description' => 'Oslnite svoje chuťové buňky našimi najčerstvejšími úlovkami a ohromujúcim výhľadom na prístav.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 8,
+            'capacity' => 20,
         ]);
     }
 }
@@ -584,6 +590,8 @@ class Event4Seeder extends Seeder
             'description' => 'Pridajte sa k nám na kúzelnú noc pod hviezdami. Užite si ohnisko, horúcu čokoládu a odborné sledovanie hviezd.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 9,
+            'capacity' => 20,
         ]);
     }
 }
@@ -607,6 +615,8 @@ class Event5Seeder extends Seeder
             'description' => 'Preskúmajte najnovšie technológie a inovácie na tohtoročnom TechCone. Spojte sa s osobnosťami a vizionármi technického odvetvia.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 10,
+            'capacity' => 100,
         ]);
     }
 }
@@ -630,6 +640,8 @@ class Event6Seeder extends Seeder
             'description' => 'Ponorte sa do pokoja s naším workshopom venujúcim sa meditácii. Oživte si myseľ a telo.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 11,
+            'capacity' => 20,
         ]);
     }
 }
@@ -653,6 +665,8 @@ class Event7Seeder extends Seeder
             'description' => 'Ponorte sa do šialenstva nakupovania s exkluzívnymi zľavami a ponukami našich nočných šialenstiev. Nakupujte, dokým neodpadnete!',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 12,
+            'capacity' => 1000,
         ]);
     }
 }
@@ -676,6 +690,8 @@ class Event8Seeder extends Seeder
             'description' => 'Posuňte sa späť v čase s našou prehliadkovou historickou túrou. Preskúmajte bohaté dedičstvo oblasti prostredníctvom jej historických ulíc.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 13,
+            'capacity' => 30,
         ]);
     }
 }
@@ -699,6 +715,8 @@ class Event9Seeder extends Seeder
             'description' => 'Uložte sa pod nočnú oblohu na vonkajšie premietanie klasického dobrodružného filmu. Prineste si deky a popcorn!',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 14,
+            'capacity' => 50,
         ]);
     }
 }
@@ -722,6 +740,8 @@ class Event10Seeder extends Seeder
             'description' => 'Zachyťte krásu nočnej oblohy s našími odborníkmi na fotografovanie na observatóriu Skyline.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 15,
+            'capacity' => 20,
         ]);
     }
 }
@@ -745,6 +765,8 @@ class Event11Seeder extends Seeder
             'description' => 'Ponorte sa do kulinárného zážitku s naším špeciálnym menu, ktoré kombinuje chute z celého sveta.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 14,
+            'capacity' => 20,
         ]);
     }
 }
@@ -768,6 +790,8 @@ class Event12Seeder extends Seeder
             'description' => 'Stretnite svojich obľúbených autorov, nechajte si podpísať knihy a užívajte si útulné popoludnie v kníhkupectve a kaviarni Harmony.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 13,
+            'capacity' => 50,
         ]);
     }
 }
@@ -791,6 +815,8 @@ class Event13Seeder extends Seeder
             'description' => 'Ponorte sa do sveta živého pouličného umenia s živými predstaveniami.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 12,
+            'capacity' => 0,
         ]);
     }
 }
@@ -814,6 +840,8 @@ class Event14Seeder extends Seeder
             'description' => 'Užite si večer hudby, vynikajúceho jedla a ohromujúceho výhľadu v našom resorte.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 11,
+            'capacity' => 0,
         ]);
     }
 }
@@ -837,6 +865,8 @@ class Event15Seeder extends Seeder
             'description' => 'Užite si noc jazzovej hudby, od klasiky po súčasnosť.',
             'photo' => basename($photo),
             'approved' => true,
+            'organiser' => 10,
+            'capacity' => 0,
         ]);
     }
 }
