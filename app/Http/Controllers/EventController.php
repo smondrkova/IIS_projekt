@@ -21,6 +21,20 @@ class EventController extends Controller
         return view('events', compact('events'));
     }
 
+    public function isRegistetedToEvent($eventId)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return false;
+        }
+
+        $event = Event::find($eventId);
+        $isRegistered = $event->users()->where('user_id', $user->id)->exists();
+
+        return $isRegistered;
+    }
+
     public function event_detail($id, Request $request)
     {
         $referrer = $request->headers->get('referer'); // Get the URL of the previous page
@@ -38,7 +52,9 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id); // Fetch the event by its ID
 
-        return view('event_detail', ['event' => $event, 'backButtonLink' => $backButtonLink]);
+        $isRegistered = $this->isRegistetedToEvent($id);
+
+        return view('event_detail', ['event' => $event, 'backButtonLink' => $backButtonLink, 'isRegistered' => $isRegistered]);
     }
 
     public function search_categories()
