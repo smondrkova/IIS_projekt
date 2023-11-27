@@ -214,7 +214,7 @@ class EventController extends Controller
 
         $event = Event::find($eventId);
 
-        if ($event->users->count() == $event->capacity){
+        if ($event->users->count() == $event->capacity && $event->capacity != 0){
             return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('error', 'Kapacita udalosti je už plne obsadená. Ospravedlňujeme sa.');
         }
 
