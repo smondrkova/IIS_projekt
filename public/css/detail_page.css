@@ -43,10 +43,6 @@ body {
     flex: 1;
 }
 
-.links {
-    cursor: pointer; 
-}
-
 .links:hover {
     color: #0056b3; 
 }

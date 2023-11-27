@@ -5,12 +5,62 @@
 <head>
     <meta charset="UTF-8">
     <title>UdaloMánia</title>
-    <link rel="stylesheet" href="{{ asset('css/detail_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
  
 @extends('layouts.app')  
 
 @section('content')
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0px;
+            margin: auto;
+            max-width: 1000px;
+        }
+
+        .grid-item {
+            width: 100%; 
+        }
+
+        .image {
+            width: 480px;
+            height: 300px;
+        }
+
+        .text {
+            max-width: 100%;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between; 
+            align-items: stretch;
+        }
+
+        .button-container a,
+        .button-container form {
+            flex: 1;
+            margin: 0 5px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-container button {
+            flex: 1;
+        }
+
+        .links:hover {
+            color: #0056b3; 
+        }
+    </style>
+
+
     <div class="container">
         <div class="grid-container">
             <div class="grid-item image">

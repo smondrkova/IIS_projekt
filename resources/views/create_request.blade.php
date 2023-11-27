@@ -5,12 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <title>UdaloMánia</title>
-    <link rel="stylesheet" href="{{ asset('css/create_request.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 @extends('layouts.app')
 
 @section('content')
+
+    <style>
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button-container a {
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            width: 300px;
+            text-align: center;
+        }
+    </style>
+
     <div class="container mx-auto p-8">
         @auth
             <h2 class="text-2xl font-bold mb-4">Vytvorenie novej žiadosti</h2>
