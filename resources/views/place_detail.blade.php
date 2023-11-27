@@ -30,7 +30,7 @@
                         <p class="card-text">{{ $place->description }}</p>
                         <br>
                         <a href="{{ url()->previous() }}" class="btn btn-primary">Späť</a>
-                        @if(auth()->user()->id == 1 || auth()->user()->id == 2)
+                        @if((auth()->user()->id == 1 || auth()->user()->id == 2) && $deleteButtonDisplay)
                             <form action="{{ route('delete_place', $place->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

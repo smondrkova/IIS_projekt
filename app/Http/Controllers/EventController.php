@@ -48,7 +48,7 @@ class EventController extends Controller
             $backButtonLink = route('user.show', ['id' => Auth::user()->id]);
         } elseif (strpos($referrer, 'approve')) {
             $backButtonLink = route('approve');
-        }
+        } 
 
         $event = Event::findOrFail($id); // Fetch the event by its ID
 
@@ -83,11 +83,19 @@ class EventController extends Controller
         return view('create_request');
     }
 
-    public function place_detail($id, $name)
+    public function place_detail($id, $name, Request $request)
     {
         $place = Place::findOrFail($id); // Fetch the place by its ID
 
-        return view('place_detail', compact('place'));
+        $referrer = $request->headers->get('referer');
+
+        if (strpos($referrer, 'manage_places')){
+            $deleteButtonDisplay = true;
+        } else {
+            $deleteButtonDisplay = false;
+        }
+
+        return view('place_detail', ['place' => $place, 'deleteButtonDisplay' => $deleteButtonDisplay]);
     }
 
     public function create_event()
@@ -201,7 +209,7 @@ class EventController extends Controller
         $user = Auth::user();
 
         if (!$user) {
-            return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('error', 'Iba prihlásený žívatelia sa môžu registrovať na udalosti.');
+            return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('error', 'Iba prihlásený užívatelia sa môžu registrovať na udalosti.');
         }
 
         $event = Event::find($eventId);
@@ -209,7 +217,7 @@ class EventController extends Controller
         if ($event->users->count() == $event->capacity){
             return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('error', 'Kapacita udalosti je už plne obsadená. Ospravedlňujeme sa.');
         }
-        
+
         $event->users()->attach($user->id);
 
         return redirect()->route('events.show', ['id' => $eventId, 'name' => $name])->with('success', 'Boli ste úspešne registrovaný na túto udalosť.');
