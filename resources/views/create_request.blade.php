@@ -24,10 +24,10 @@
                 Vitajte v UdaloMánii! 
                 <br><br>
                 V našom systéme je možné vytvárať udalosti, kategórie a miesta, kde by sa udalosti mohli konať. Vytváranie
-                funguje formou žiadostí, ktoré sú následne schvaľované administrátorom. Ak chcete vytvoriť novú udalosť, kategóriu alebo miesto,
+                funguje formou žiadostí, ktoré sú následne schvaľované moderátorom. Ak chcete vytvoriť novú udalosť, kategóriu alebo miesto,
                 je potrebné sa registrovať. Ak už máte vytvorený účet, stačí sa prihlásiť. 
                 <br><br>
-                Radi váš privítame v našom systéme!
+                Radi vás privítame v našom systéme!
             </p>
 
             <div class="button-container pl-5">
