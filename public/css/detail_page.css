@@ -32,9 +32,15 @@ body {
 }
 
 .button-container a,
+.button-container form {
+    flex: 1;
+    margin: 0 5px;
+    display: flex;
+    justify-content: center;
+}
+
 .button-container button {
     flex: 1;
-    margin: 0 5px; 
 }
 
 .links {
