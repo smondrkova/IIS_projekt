@@ -13,10 +13,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::latest()
-                        ->where('approved', true) 
-                        ->take(9)
-                        ->get(); // Fetch events from the database
+        $events = Event::latest()->where('approved', true) ->take(9)->get();
 
         return view('events', compact('events'));
     }
@@ -37,8 +34,8 @@ class EventController extends Controller
 
     public function event_detail($id, Request $request)
     {
-        $referrer = $request->headers->get('referer'); // Get the URL of the previous page
-        $backButtonLink = route('events.index'); // Default back button link
+        $referrer = $request->headers->get('referer');
+        $backButtonLink = route('events.index');
         
         if (strpos($referrer, 'events')) {
             $backButtonLink = route('events.index');
@@ -50,7 +47,7 @@ class EventController extends Controller
             $backButtonLink = route('approve');
         } 
 
-        $event = Event::findOrFail($id); // Fetch the event by its ID
+        $event = Event::findOrFail($id);
 
         $isRegistered = $this->isRegistetedToEvent($id);
 
@@ -59,7 +56,7 @@ class EventController extends Controller
 
     public function search_categories()
     {
-        $categories = Category::all(); // Fetch categories from the database
+        $categories = Category::all();
         $categories = Category::orderBy('name', 'asc')->get();
 
         return view('search_categories', compact('categories'));
@@ -67,8 +64,8 @@ class EventController extends Controller
 
     public function category_page($id)
     {
-        $selectedCategory = Category::findOrFail($id); // Fetch the category by its ID
-        $categories = Category::all(); // Fetch categories from the database
+        $selectedCategory = Category::findOrFail($id);
+        $categories = Category::all();
         $categories = Category::orderBy('name', 'asc')->get();
 
         $events = $selectedCategory->events()
@@ -85,7 +82,7 @@ class EventController extends Controller
 
     public function place_detail($id, $name, Request $request)
     {
-        $place = Place::findOrFail($id); // Fetch the place by its ID
+        $place = Place::findOrFail($id);
 
         $referrer = $request->headers->get('referer');
 
@@ -117,7 +114,6 @@ class EventController extends Controller
 
         public function store_event(Request $request)
         {
-            // Validate the request
             $validatedData = $request->validate([
                 'event_name' => 'required|string|unique:events,event_name',
                 'date_of_event' => 'required|date|after_or_equal:today',
@@ -150,35 +146,28 @@ class EventController extends Controller
                 $validatedData['photo'] = null;
             }
 
-            // Set the organiser to the currently logged in user
-            $validatedData['organiser'] = Auth::user()->id;
+            $validatedData['organiser'] = Auth::user()->id; // Set the organiser to the currently logged in user
 
-            // Create a new event using the validated data
             Event::create($validatedData);
 
-            // Redirect back or wherever you want after the event is created
             return redirect()->route('events.create_request')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
         }
 
     public function store_category(Request $request)
     {
-        // Validate the request
         $validatedData = $request->validate([
             'name' => 'required|string|unique:categories,name',
         ], [
             'name.unique' => 'Názov kategórie je už obsadený. Prosím, vyberte si unikátny názov.',
         ]);
 
-        // Create a new category using the validated data
         Category::create($validatedData);
 
-        // Redirect back or wherever you want after the category is created
         return redirect()->route('events.create_request')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
     }
 
     public function store_place(Request $request)
     {
-        // Validate the request
         $validatedData = $request->validate([
             'name' => 'required|string|unique:places,name',
             'address' => 'required|string|unique:places,address',
@@ -189,7 +178,6 @@ class EventController extends Controller
             'address.unique' => 'Adresa miesta je už obsadená. Prosím, vyberte si unikátnu adresu.',
         ]);
 
-        // Store the photo
         if ($request->hasFile('photo')) {
             $imagePath = $request->file('photo')->store('place_photos', 'public');
             $validatedData['photo'] = basename($imagePath);
@@ -197,10 +185,8 @@ class EventController extends Controller
             $validatedData['photo'] = null;
         }
 
-        // Create a new place using the validated data
         Place::create($validatedData);
 
-        // Redirect back or wherever you want after the place is created
         return redirect()->route('events.create_request')->with('success', 'Žiadosť bola úspešne vytvorená! Počkajte na schválenie.');
     }
 
@@ -305,7 +291,6 @@ class EventController extends Controller
 
         $event->save();
 
-        // Redirect back or wherever you want after the event is created
         return redirect()->route('user.show', ['id' => Auth::id()])->with('success', 'Udalosť bola úspešne upravená.');
     }
 }

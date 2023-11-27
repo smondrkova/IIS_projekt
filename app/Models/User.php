@@ -44,15 +44,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    // protected $casts = [
-    //     'password' => 'hashed',
-    // ];
-
-    /**
      * The primary key for the model.
      *
      * @var string

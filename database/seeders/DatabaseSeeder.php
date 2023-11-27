@@ -1059,10 +1059,5 @@ class DatabaseSeeder extends Seeder
             Event14Seeder::class,
             Event15Seeder::class,
         ]);
-        
-        // Category::factory(10)->create();
-        // User::factory(10)->create();
-        // Place::factory(20)->create();
-        // Event::factory(20)->create();
     }
 }

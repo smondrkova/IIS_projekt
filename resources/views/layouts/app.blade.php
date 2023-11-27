@@ -1,3 +1,5 @@
+<!-- resources/views/layouts/app.blade.php -->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +10,6 @@
     <title>UdaloMánia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    {{-- blade-formatter-disable --}}
     <style type="text/tailwindcss">
         .btn{
             @apply rounded-md px-2 py-1 text-center font-medium shadow-sm ring-1 text-slate-700 ring-slate-700/10 hover:bg-slate-50
@@ -30,10 +31,10 @@
             @apply text-red-500 text-sm
         }
     </style>
-    {{-- blade-formatter-enable --}}
 
     @yield('styles')
 </head>
+
 <body class="container mx-auto mt-0 mb-10 max-w-full">
 
     <div class="top-bar bg-gray-800 text-white py-2 px-4 mb-4 h-16 flex items-center justify-between">
@@ -42,26 +43,24 @@
         <div class="flex space-x-6 float-right text-lg">
             <a href="{{ route('events.index') }}" class="text-white">Domov</a>
             <a href="{{ route('events.search_categories') }}" class="text-white">Prehľadávať</a>
+            
             @auth
-                {{-- Show the profile button if the user is authenticated --}}
                 <a href="{{ route('user.show', auth()->user()->id) }}" class="text-white">Profil</a>
 
-                {{-- Show the "Approve" button for moderators and admins --}}
                 @if(auth()->user()->id == 1 || auth()->user()->id == 2 || auth()->user()->id == 3 || auth()->user()->id == 4)
                     <a href="{{ route('approve') }}" class="text-white">Správa žiadostí</a>
                     <a href="{{ route('manage_categories') }}" class="text-white">Správa kategórii</a>
                     <a href="{{ route('manage_places') }}" class="text-white">Správa miest</a>
                     
-                    {{-- Show the "Manage Users" button for admins --}}
                     @if(auth()->user()->id == 1)
                         <a href="{{ route('manage_users') }}" class="text-white">Správa užívateľov</a>
                     @endif
                 @endif
 
             @else
-                {{-- Show the login/register button if the user is not authenticated --}}
                 <a href="{{ route('auth.login_form') }}" class="text-white">Prihlásenie</a>
             @endauth
+            
             <a href="{{ route('events.create_request') }}" class="text-white">+ Vytvoriť žiadosť</a>
         </div>
     </div>

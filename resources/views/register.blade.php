@@ -1,4 +1,5 @@
 <!-- resources/views/register.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

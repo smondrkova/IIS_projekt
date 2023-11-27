@@ -1,4 +1,5 @@
 <!-- resources/views/login.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +38,6 @@
         <button type="submit" class="btn btn-primary">Prihlásenie</button>
         </form>
 
-        <!-- Register link -->
         <div class="mt-4">
             <a href="{{ route('auth.register_form') }}" class="btn btn-primary"> Ešte nemáš účet? Zaregistruj sa!</a>
         </div>

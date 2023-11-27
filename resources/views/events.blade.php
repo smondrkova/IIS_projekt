@@ -2,9 +2,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<!-- resources/views/events.blade.php -->
 
-@extends('layouts.app')  {{-- Assuming you have a layout file, adjust as needed --}}
+@extends('layouts.app')
 
 @section('content')
     <div class="container mx-auto">

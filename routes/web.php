@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Requests\TaskRequest;
-use App\Models\Task;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
@@ -19,17 +16,6 @@ use App\Http\Controllers\AuthController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
-// Route::get('/', function(){
-//     return redirect()->route('tasks.index');
-// });
-
-// Route::get('/tasks', function ()  {
-//     return view('index', [
-//         'events'=> Event::latest()->paginate(10)
-//     ]);
-// })->name('tasks.index');
 
 Route::redirect('/', '/events');
 

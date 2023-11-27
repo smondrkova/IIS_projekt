@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Place;
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
 use Auth;
 use Hash;
 use Carbon\Carbon;
@@ -48,7 +47,6 @@ class UserController extends Controller
             'password.confirmed' => 'The password confirmation does not match.',
         ]);
 
-        // Find the user by ID
         $user = User::findOrFail($id);
 
         // Update the user's attributes if the fields are not empty
@@ -68,12 +66,10 @@ class UserController extends Controller
             $user->phone_number = $validatedData['phone_number'];
         }
 
-        // Update the password if provided
         if (!is_null($validatedData['password'])) {
             $user->password = bcrypt($validatedData['password']);
         }
 
-        // Save the changes
         $user->save();
 
         return redirect()->route('user.show', ['id' => $id])->with('success', 'Profil bol úspešne upravený.');

@@ -31,14 +31,12 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
             return redirect()->route('events.index')->with("success", "Prihlásenie prebehlo úspešne!");
         }
 
         return redirect()->route('auth.login_form')->with("error", "Invalid credentials");
     }
 
-    // $data['password'] = Hash::make($request->password);
     public function register(Request $request) {
         
         $validatedData = $request->validate([
