@@ -17,7 +17,7 @@
         <div class="flex flex-wrap justify-center gap-10">
             @foreach ($places as $place)
                 <div class="card my-4">
-                    <img src="{{ $place->photo ? asset('storage/place_photos/'. $place->photo) : asset('placeholders/placeholder.jpg') }}" class="w-full" alt="{{ $place->place_name }}" style="width: 450px;">
+                    <img src="{{ $place->photo ? asset('storage/place_photos/'. $place->photo) : asset('placeholders/placeholder.jpg') }}" class="w-full" alt="{{ $place->place_name }}" style="width: 450px; height: 250px">
                     
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2">{{ $place->name }}</div>
