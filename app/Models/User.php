@@ -2,16 +2,24 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Event;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    public $table = 'users';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -19,8 +27,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'surname',
         'password',
+        'email',
+        'phone_number',
     ];
 
     /**
@@ -38,8 +48,29 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+    // protected $casts = [
+    //     'password' => 'hashed',
+    // ];
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
+
+    public function organized_events()
+    {
+        return $this->hasMany(Event::class, 'organiser');
+    }
+
+    public function isRegisteredToTheEvent($eventId)
+    {
+        return $this->events->contains($eventId);
+    }
 }
