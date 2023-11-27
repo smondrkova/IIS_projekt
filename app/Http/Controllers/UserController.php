@@ -43,7 +43,7 @@ class UserController extends Controller
             'surname' => 'required|string',
             'email' => 'required|email|unique:users,email,' . $id,
             'phone_number' => 'nullable|string',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'nullable|string|min:8|confirmed',
         ], [
             'password.confirmed' => 'The password confirmation does not match.',
         ]);
@@ -64,14 +64,14 @@ class UserController extends Controller
             $user->email = $validatedData['email'];
         }
 
-        if ($validatedData['phone_number']) {
-            $user->phone_number = $validatedData['phone_number'];
-        }
+    if (array_key_exists('phone_number', $validatedData)) {
+        $user->phone_number = $validatedData['phone_number'];
+    }
 
-        // Update the password if provided
-        if ($validatedData['password']) {
-            $user->password = bcrypt($validatedData['password']);
-        }
+    // Update the password if provided
+    if (!is_null($validatedData['password'])) {
+        $user->password = bcrypt($validatedData['password']);
+    }
 
         // Save the changes
         $user->save();
