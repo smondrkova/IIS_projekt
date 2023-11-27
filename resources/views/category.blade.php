@@ -33,8 +33,11 @@
                 <div class="grid grid-cols-2 gap-4">
                     @foreach ($events as $event)
                     <div class="card">
-                        <img src="{{ asset('placeholders/placeholder.jpg') }}" class="w-full" alt="{{ $event->event_name }}"
-                            style="width: 450px;">
+                        @if($event->photo)
+                            <img src="{{ asset('storage/event_photos/'. $event->photo) }}" class="w-full" alt="{{ $event->event_name }}" style="width: 450px;">
+                        @else
+                            <img src="{{ asset('placeholders/placeholder.jpg') }}" class="w-full" alt="{{ $event->event_name }}" style="width: 450px;">
+                        @endif
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">{{ $event->event_name }}</div>
                             <p class="text-md">{{ \Carbon\Carbon::parse($event->date_of_event)->format('d.m.Y') }} o {{ $event->time_of_event }}</p>

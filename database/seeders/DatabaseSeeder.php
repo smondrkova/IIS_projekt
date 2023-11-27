@@ -225,6 +225,7 @@ class Place1Seeder extends Seeder
             'address' => 'Parková 12, Košice, Slovensko',
             'photo' => basename($photo),
             'description' => 'Raj pre lásku k prírode, Park Zelený háj vás privíta svojou nádhernou zeleňou a jazierkami.',
+            'approved' => true,
         ]);
     }
 }
@@ -243,6 +244,7 @@ class Place2Seeder extends Seeder
             'address' => 'Kávová 10, Bratislava, Slovensko',
             'photo' => basename($photo),
             'description' => 'Hviezdná kaviareň je miestom, kde sa stretáva vášeň pre kávu a príjemné prostredie. Očarujte svoje chuťové poháriky najlepšími kávovými delikatesami v meste.',
+            'approved' => true,
         ]);
     }
 }
@@ -261,6 +263,7 @@ class Place3Seeder extends Seeder
             'address' => 'Pobrežná 67, Bratislava, Slovensko',
             'photo' => basename($photo),
             'description' => 'S romantickým výhľadom na prístav je naša reštaurácia miestom pre tých, čo milujú kulinárske zážitky a atmosféru s pohľadom na trblietkajúcu hladinu.',
+            'approved' => true,
         ]);
     }
 }
@@ -279,6 +282,7 @@ class Place4Seeder extends Seeder
             'address' => 'Vrcholová 2, Poprad, Slovensko',
             'photo' => basename($photo),
             'description' => 'Vitajte v útulnom penzióne Horský úkryt, kde príroda a pohodlie idú ruka v ruke. Ideálné pre tých, čo hľadajú oddych v horskom prostredí.',
+            'approved' => true,
         ]);
     }
 }
@@ -297,6 +301,7 @@ class Place5Seeder extends Seeder
             'address' => 'Technické námestie 2, Košice, Slovensko',
             'photo' => basename($photo),
             'description' => 'TechHub je epicentrom inovácií a technologického pokroku. Spoľahnite sa na stimulujúce prostredie pre výskum a rozvoj najnovších technologických trendov.',
+            'approved' => true,
         ]);
     }
 }
@@ -315,6 +320,7 @@ class Place6Seeder extends Seeder
             'address' => 'Pokojná 4, Piešťany, Slovensko',
             'photo' => basename($photo),
             'description' => 'Spa a Wellness Kľud je útočiskom pre relaxáciu a obnovu tela aj mysle. Ponúkame širokú škálu wellness služieb pre dokonalý oddych.',
+            'approved' => true,
         ]);
     }
 }
@@ -333,6 +339,7 @@ class Place7Seeder extends Seeder
             'address' => 'Hviezdna 34, Bratislava, Slovensko',
             'photo' => basename($photo),
             'description' => 'OC Galaxy - Mekka pre nakupovanie, zábavu a gastronomické potešenie. Tu sa stretáva svetový spôsob života s moderným štýlom nakupovania.',
+            'approved' => true,
         ]);
     }
 }
@@ -351,6 +358,7 @@ class Place8Seeder extends Seeder
             'address' => 'Ulica odkazu 1, Banská Bystrica, Slovensko',
             'photo' => basename($photo),
             'description' => 'Historické námestie je pokladnicou minulosti s krásnymi historickými budovami a úzkymi uličkami. Ideálne pre tých čo túžia po kúsku histórie.',
+            'approved' => true,
         ]);
     }
 }
@@ -369,6 +377,7 @@ class Place9Seeder extends Seeder
             'address' => 'Dobrodružná 38, Liptovský Mikuláš, Slovensko',
             'photo' => basename($photo),
             'description' => 'Camp Dobrodrúžstvo je výchozím bodom pre dobrodružstvo v prírode. Kým si budete užívať kempovanie, objavujte okolitú prírodu a adrenalínové aktivity.',
+            'approved' => true,
         ]);
     }
 }
@@ -387,6 +396,7 @@ class Place10Seeder extends Seeder
             'address' => 'Hviezdna 5, Košice, Slovensko',
             'photo' => basename($photo),
             'description' => 'S výhľadom na mesto, observatórium Skyline ponúka úchvatné pohľady na nočné nebo. Ideálne pre všetkých čo milujú hviezdne pozorovanie.',
+            'approved' => true,
         ]);
     }
 }
@@ -405,6 +415,7 @@ class Place11Seeder extends Seeder
             'address' => 'Dunajská 2, Bratislava, Slovensko',
             'photo' => basename($photo),
             'description' => 'Restaurace Spojená chuť spája chute z celého sveta v jedinečných kulinárskych kompozíciách.',
+            'approved' => true,
         ]);
     }
 }
@@ -423,6 +434,7 @@ class Place12Seeder extends Seeder
             'address' => 'Literárna 7, Bratislava, Slovensko',
             'photo' => basename($photo),
             'description' => 'Kníhkupéctvo & Kaviareň Harmony je útulné miesto pre knihomolov a milovníkov kávy. Čítajte obľúbené knihy pri šálke kvalitnej kávy.',
+            'approved' => true,
         ]);
     }
 }
@@ -441,6 +453,7 @@ class Place13Seeder extends Seeder
             'address' => 'Kultúrna 2, Košice, Slovensko',
             'photo' => basename($photo),
             'description' => 'Mestská galéria umenia je priestor pre kreatívnu sebarealizáciu a zážitok z moderného umenia. Ponúka výstavy a podporuje miestnych umelcov.',
+            'approved' => true,
         ]);
     }
 }
@@ -459,6 +472,7 @@ class Place14Seeder extends Seeder
             'address' => 'Pobrežná 1, Štrbské Pleso, Slovensko',
             'photo' => basename($photo),
             'description' => 'Rekreačný resort na Brehu Jazera je miesto pre oddych a relaxáciu pri brehu jazera. Užívajte si nádherný výhľad a komfort našich ubytovacích zariadení.',
+            'approved' => true,
         ]);
     }
 }
@@ -477,6 +491,7 @@ class Place15Seeder extends Seeder
             'address' => 'Hlavná 1, Žilina, Slovensko',
             'photo' => basename($photo),
             'description' => 'Náš Jazzový klub je živý klub, kde sa stretáva komunita jazzových nadšencov. Každý deň je tu plný hudobnej energie a vášne pre jazz.',
+            'approved' => true,
         ]);
     }
 }
@@ -826,6 +841,126 @@ class Event15Seeder extends Seeder
     }
 }
 
+class Category1Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 1,
+            'name' => 'Vzdelávanie',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category2Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 2,
+            'name' => 'Hudba a koncerty',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category3Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 3,
+            'name' => 'Nočný život',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category4Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 4,
+            'name' => 'Kultúra',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category5Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 5,
+            'name' => 'Kvízy a hry',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category6Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 6,
+            'name' => 'Gastronómia',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category7Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 7,
+            'name' => 'Šport',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category8Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 8,
+            'name' => 'Technológia',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category9Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 9,
+            'name' => 'Zdravie',
+            'approved' => true,
+        ]);
+    }
+}
+
+class Category10Seeder extends Seeder
+{
+    public function run()
+    {
+        Category::create([
+            'id' => 10,
+            'name' => 'Cestovanie',
+            'approved' => true,
+        ]);
+    }
+}
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -833,9 +968,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(10)->create();
-
         $this->call([
+            // Seeding category table
+            Category1Seeder::class,
+            Category2Seeder::class,
+            Category3Seeder::class,
+            Category4Seeder::class,
+            Category5Seeder::class,
+            Category6Seeder::class,
+            Category7Seeder::class,
+            Category8Seeder::class,
+            Category9Seeder::class,
+            Category10Seeder::class,
+
             // Seeding users table
             AdminSeeder::class,
             ModeratorSeeder::class,
@@ -884,7 +1029,8 @@ class DatabaseSeeder extends Seeder
             Event14Seeder::class,
             Event15Seeder::class,
         ]);
-
+        
+        // Category::factory(10)->create();
         // User::factory(10)->create();
         // Place::factory(20)->create();
         // Event::factory(20)->create();
